@@ -32,3 +32,14 @@ sail up
 
 READ THIS
 https://laravel.com/docs/9.x/sail#introduction
+
+NOW ITS TIME TO RUN MIGRATIONS AND BUILD FRONTEND
+```cmd
+sail artisan migrate
+```
+```cmd
+sail npm install
+```
+```cmd
+sail npm run dev
+```
