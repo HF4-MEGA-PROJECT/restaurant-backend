@@ -29,3 +29,6 @@ THEN YOU CAN USE
 ```cmd
 sail up
 ```
+
+READ THIS
+https://laravel.com/docs/9.x/sail#introduction
