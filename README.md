@@ -9,3 +9,18 @@ docker run --rm \
     laravelsail/php81-composer:latest \
     composer install --ignore-platform-reqs
 ```
+
+THEN RUN THIS
+```cmd
+./vendor/bin/sail up
+```
+
+OR CREATE A BASH ALIAS
+```cmd
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+```
+
+THEN YOU CAN USE
+```cmd
+sail up
+```
