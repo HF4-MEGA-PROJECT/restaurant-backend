@@ -10,6 +10,11 @@ docker run --rm \
     composer install --ignore-platform-reqs
 ```
 
+THEN COPY ENV EXAMPLE TO ENV
+```cmd
+cp .env.example .env
+```
+
 THEN RUN THIS
 ```cmd
 ./vendor/bin/sail up
