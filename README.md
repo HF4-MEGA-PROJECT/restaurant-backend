@@ -1,6 +1,11 @@
 <h1><strong>Big Beefy Men</strong></h1>
 
-RUN THIS AFTER CLONE
+COPY ENV EXAMPLE TO ENV
+```cmd
+cp .env.example .env
+```
+
+RUN THIS
 ```cmd
 docker run --rm \
     -u "$(id -u):$(id -g)" \
@@ -8,11 +13,6 @@ docker run --rm \
     -w /var/www/html \
     laravelsail/php81-composer:latest \
     composer install --ignore-platform-reqs
-```
-
-THEN COPY ENV EXAMPLE TO ENV
-```cmd
-cp .env.example .env
 ```
 
 THEN RUN THIS
