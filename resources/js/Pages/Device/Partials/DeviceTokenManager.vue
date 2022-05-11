@@ -74,14 +74,14 @@ const deleteApiToken = () => {
 
 <template>
     <div>
-        <!-- Generate API Token -->
+        <!-- Generate Device Token -->
         <JetFormSection @submitted="createApiToken">
             <template #title>
                 Create Device Token
             </template>
 
             <template #description>
-                Device tokens allow third-party services to authenticate with our application on your behalf. So Cool
+                Device tokens allow you to authenticate your device with your account.
             </template>
 
             <template #form>
@@ -96,20 +96,6 @@ const deleteApiToken = () => {
                         autofocus
                     />
                     <JetInputError :message="createApiTokenForm.errors.name" class="mt-2" />
-                </div>
-
-                <!-- Token Permissions -->
-                <div v-if="availablePermissions.length > 0" class="col-span-6">
-                    <JetLabel for="permissions" value="Permissions" />
-
-                    <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div v-for="permission in availablePermissions" :key="permission">
-                            <label class="flex items-center">
-                                <JetCheckbox v-model:checked="createApiTokenForm.permissions" :value="permission" />
-                                <span class="ml-2 text-sm text-gray-600">{{ permission }}</span>
-                            </label>
-                        </div>
-                    </div>
                 </div>
             </template>
 
@@ -127,18 +113,18 @@ const deleteApiToken = () => {
         <div v-if="tokens.length > 0">
             <JetSectionBorder />
 
-            <!-- Manage API Tokens -->
+            <!-- Manage Device Tokens -->
             <div class="mt-10 sm:mt-0">
                 <JetActionSection>
                     <template #title>
-                        Manage API Tokens
+                        Manage Device Tokens
                     </template>
 
                     <template #description>
                         You may delete any of your existing tokens if they are no longer needed.
                     </template>
 
-                    <!-- API Token List -->
+                    <!-- Device Token List -->
                     <template #content>
                         <div class="space-y-6">
                             <div v-for="token in tokens" :key="token.id" class="flex items-center justify-between">
@@ -173,17 +159,19 @@ const deleteApiToken = () => {
         <!-- Token Value Modal -->
         <JetDialogModal :show="displayingToken" @close="displayingToken = false">
             <template #title>
-                API Token
+                Device Token
             </template>
 
             <template #content>
                 <div>
-                    Please copy your new API token. For your security, it won't be shown again.
+                    Please copy your new device token. For your security, it won't be shown again.
                 </div>
-
-                <div v-if="$page.props.jetstream.flash.token" class="mt-4 bg-gray-100 px-4 py-2 rounded font-mono text-sm text-gray-500">
-                    {{ $page.props.jetstream.flash.token }}
-                </div>
+                <template v-if="$page.props.jetstream.flash.token">
+                    <vue-qrcode class="mx-auto" :value="$page.props.jetstream.flash.token" :options="{ width: 400 }"></vue-qrcode>
+                    <div class="mt-4 bg-gray-100 px-4 py-2 rounded font-mono text-sm text-gray-500">
+                        {{ $page.props.jetstream.flash.token }}
+                    </div>
+                </template>
             </template>
 
             <template #footer>
@@ -193,10 +181,10 @@ const deleteApiToken = () => {
             </template>
         </JetDialogModal>
 
-        <!-- API Token Permissions Modal -->
+        <!-- Device Token Permissions Modal -->
         <JetDialogModal :show="managingPermissionsFor" @close="managingPermissionsFor = null">
             <template #title>
-                API Token Permissions
+                Device Token Permissions
             </template>
 
             <template #content>
@@ -229,11 +217,11 @@ const deleteApiToken = () => {
         <!-- Delete Token Confirmation Modal -->
         <JetConfirmationModal :show="apiTokenBeingDeleted" @close="apiTokenBeingDeleted = null">
             <template #title>
-                Delete API Token
+                Delete Device Token
             </template>
 
             <template #content>
-                Are you sure you would like to delete this API token?
+                Are you sure you would like to delete this device token?
             </template>
 
             <template #footer>
