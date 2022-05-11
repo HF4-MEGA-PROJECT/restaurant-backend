@@ -77,7 +77,7 @@ const deleteApiToken = () => {
         <!-- Generate API Token -->
         <JetFormSection @submitted="createApiToken">
             <template #title>
-                Create Device Token
+                Create API Token
             </template>
 
             <template #description>

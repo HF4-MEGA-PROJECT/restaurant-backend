@@ -163,6 +163,10 @@ const logout = () => {
                                             API Tokens
                                         </JetDropdownLink>
 
+                                        <JetDropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('device-tokens.index')">
+                                            Device Tokens
+                                        </JetDropdownLink>
+
                                         <div class="border-t border-gray-100" />
 
                                         <!-- Authentication -->
