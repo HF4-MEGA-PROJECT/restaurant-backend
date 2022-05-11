@@ -161,7 +161,7 @@ class ControllerTest extends TestCase
         $response = $this->putJson(route('category.update', $category), [
             'id' => $category->id,
             'name' => 'Hovedret',
-            'categories_id' => 123
+            'categories_id' => 0
         ]);
 
         $categories = Category::all();
