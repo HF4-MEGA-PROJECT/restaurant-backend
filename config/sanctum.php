@@ -17,7 +17,7 @@ return [
 
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
         '%s%s',
-        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1,.binau.dev',
+        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1,',
         Sanctum::currentApplicationUrlWithPort()
     ))),
 
@@ -64,4 +64,5 @@ return [
         'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
     ],
 
+    'prefix' => 'api',
 ];
