@@ -77,11 +77,11 @@ const deleteApiToken = () => {
         <!-- Generate API Token -->
         <JetFormSection @submitted="createApiToken">
             <template #title>
-                Create API Token
+                Create Device Token
             </template>
 
             <template #description>
-                API tokens allow third-party services to authenticate with our application on your behalf.
+                Device tokens allow third-party services to authenticate with our application on your behalf. So Cool
             </template>
 
             <template #form>

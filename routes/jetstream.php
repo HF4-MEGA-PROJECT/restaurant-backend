@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeviceTokenController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Http\Controllers\CurrentTeamController;
 use Laravel\Jetstream\Http\Controllers\Inertia\ApiTokenController;
@@ -50,6 +51,14 @@ Route::group(['middleware' => config('jetstream.middleware', ['web'])], function
             Route::post('/user/api-tokens', [ApiTokenController::class, 'store'])->name('api-tokens.store');
             Route::put('/user/api-tokens/{token}', [ApiTokenController::class, 'update'])->name('api-tokens.update');
             Route::delete('/user/api-tokens/{token}', [ApiTokenController::class, 'destroy'])->name('api-tokens.destroy');
+        }
+
+        // Device...
+        if (Jetstream::hasApiFeatures()) {
+            Route::get('/user/device-tokens', [DeviceTokenController::class, 'index'])->name('device-tokens.index');
+            Route::post('/user/device-tokens', [DeviceTokenController::class, 'store'])->name('device-tokens.store');
+            Route::put('/user/device-tokens/{token}', [DeviceTokenController::class, 'update'])->name('device-tokens.update');
+            Route::delete('/user/device-tokens/{token}', [DeviceTokenController::class, 'destroy'])->name('device-tokens.destroy');
         }
 
         // Teams...
