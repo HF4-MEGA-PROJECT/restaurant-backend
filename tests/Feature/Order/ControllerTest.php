@@ -3,7 +3,7 @@
 namespace Tests\Feature\Order;
 
 use App\Models\Order;
-use App\Models\Table;
+use App\Models\Group;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -52,7 +52,7 @@ class ControllerTest extends TestCase
 
     public function test_order_can_be_created()
     {
-        $table = Table::factory()->create();
+        $table = Group::factory()->create();
 
         $this->actingAs($user = User::factory()->create());
 
@@ -96,7 +96,7 @@ class ControllerTest extends TestCase
 
     public function test_order_can_be_updated()
     {
-        $table = Table::factory()->create();
+        $table = Group::factory()->create();
         $order = Order::factory()->create();
 
         $this->actingAs($user = User::factory()->create());

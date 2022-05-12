@@ -5,7 +5,7 @@ namespace Tests\Feature\Order;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
-use App\Models\Table;
+use App\Models\Group;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -15,7 +15,7 @@ class ModelTest extends TestCase
 
     public function test_can_get_table()
     {
-        $table = Table::factory()->create();
+        $table = Group::factory()->create();
 
         $order = new Order(['tables_id' => $table->id]);
         $order->save();
