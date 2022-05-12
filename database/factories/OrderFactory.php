@@ -18,7 +18,7 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'tables_id' => Group::factory()->create()->id
+            'groups_id' => Group::factory()->create()->id
         ];
     }
 }

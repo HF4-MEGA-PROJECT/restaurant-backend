@@ -5,6 +5,7 @@ namespace Tests\Feature\Table;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
 
 class ControllerTest extends TestCase

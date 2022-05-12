@@ -24,7 +24,7 @@ class StoreOrder extends FormRequest
     public function rules()
     {
         return [
-            'tables_id' => 'required|integer|exists:tables,id'
+            'groups_id' => 'required|integer|exists:groups,id'
         ];
     }
 }

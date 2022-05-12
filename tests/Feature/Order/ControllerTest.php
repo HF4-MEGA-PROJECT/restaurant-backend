@@ -52,28 +52,28 @@ class ControllerTest extends TestCase
 
     public function test_order_can_be_created()
     {
-        $table = Group::factory()->create();
+        $group = Group::factory()->create();
 
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('order.store'), [
-            'tables_id' => $table->id
+            'groups_id' => $group->id
         ]);
 
         $orders = Order::all();
 
         $this->assertCount(1, $orders);
-        $this->assertEquals($table->id, $orders->first()->tables_id);
+        $this->assertEquals($group->id, $orders->first()->groups_id);
 
         $response->assertExactJson($orders->first()->toArray());
     }
 
-    public function test_order_can_not_be_created_when_table_does_not_exist()
+    public function test_order_can_not_be_created_when_group_does_not_exist()
     {
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('order.store'), [
-            'tables_id' => 0
+            'groups_id' => 0
         ]);
 
         $orders = Order::all();
@@ -96,43 +96,43 @@ class ControllerTest extends TestCase
 
     public function test_order_can_be_updated()
     {
-        $table = Group::factory()->create();
+        $group = Group::factory()->create();
         $order = Order::factory()->create();
 
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->putJson(route('order.update', $order), [
             'id' => $order->id,
-            'tables_id' => $table->id
+            'groups_id' => $group->id
         ]);
 
         $orders = Order::all();
 
         $this->assertCount(1, $orders);
-        $this->assertEquals($table->id, $orders->first()->tables_id);
+        $this->assertEquals($group->id, $orders->first()->groups_id);
 
         $response->assertExactJson($orders->first()->toArray());
     }
 
-    public function test_order_can_not_be_updated_when_table_does_not_exist()
+    public function test_order_can_not_be_updated_when_group_does_not_exist()
     {
         $order = Order::factory()->create();
 
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->putJson(route('order.update', $order), [
-            'tables_id' => null
+            'groups_id' => null
         ]);
 
         $orders = Order::all();
 
         $this->assertCount(1, $orders);
-        $this->assertEquals($order->tables_id, $orders->first()->tables_id);
+        $this->assertEquals($order->groups_id, $orders->first()->groups_id);
 
         $response->assertStatus(422);
     }
 
-    public function test_table_can_be_deleted()
+    public function test_group_can_be_deleted()
     {
         $order = Order::factory()->create();
 

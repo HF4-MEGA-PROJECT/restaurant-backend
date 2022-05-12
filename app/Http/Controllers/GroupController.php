@@ -43,42 +43,42 @@ class GroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Group $table
+     * @param Group $group
      * @return JsonResponse
      */
-    public function show(Group $table)
+    public function show(Group $group)
     {
-        return response()->json($table);
+        return response()->json($group);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param UpdateGroup $request
-     * @param Group $table
+     * @param Group $group
      * @return JsonResponse
      */
-    public function update(UpdateGroup $request, Group $table)
+    public function update(UpdateGroup $request, Group $group)
     {
         $validated = $request->validated();
 
-        $table->update([
+        $group->update([
             'amount_of_people' => $validated['amount_of_people'],
             'number' => $validated['number']
         ]);
 
-        return response()->json($table);
+        return response()->json($group);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Group $table
+     * @param Group $group
      * @return Response
      */
-    public function destroy(Group $table)
+    public function destroy(Group $group)
     {
-        $table->delete();
+        $group->delete();
 
         return response('', 200);
     }
