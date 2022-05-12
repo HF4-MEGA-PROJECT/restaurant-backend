@@ -19,5 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('category', \App\Http\Controllers\CategoryController::class);
+Route::apiResource('product', \App\Http\Controllers\ProductController::class);
 Route::apiResource('reservation', \App\Http\Controllers\ReservationController::class);
 Route::apiResource('setting', \App\Http\Controllers\SettingController::class);
