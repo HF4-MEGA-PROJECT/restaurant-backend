@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTable;
-use App\Http\Requests\UpdateTable;
-use App\Models\Table;
+use App\Http\Requests\StoreGroup;
+use App\Http\Requests\UpdateGroup;
+use App\Models\Group;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
-class TableController extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,68 +17,68 @@ class TableController extends Controller
      */
     public function index()
     {
-        return response()->json(Table::all());
+        return response()->json(Group::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreTable $request
+     * @param StoreGroup $request
      * @return JsonResponse
      */
-    public function store(StoreTable $request)
+    public function store(StoreGroup $request)
     {
         $validated = $request->validated();
 
-        $setting = new Table([
+        $group = new Group([
             'amount_of_people' => $validated['amount_of_people'],
             'number' => $validated['number']
         ]);
 
-        $setting->save();
+        $group->save();
 
-        return response()->json($setting, 201);
+        return response()->json($group, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Table $table
+     * @param Group $group
      * @return JsonResponse
      */
-    public function show(Table $table)
+    public function show(Group $group)
     {
-        return response()->json($table);
+        return response()->json($group);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateTable $request
-     * @param Table $table
+     * @param UpdateGroup $request
+     * @param Group $group
      * @return JsonResponse
      */
-    public function update(UpdateTable $request, Table $table)
+    public function update(UpdateGroup $request, Group $group)
     {
         $validated = $request->validated();
 
-        $table->update([
+        $group->update([
             'amount_of_people' => $validated['amount_of_people'],
             'number' => $validated['number']
         ]);
 
-        return response()->json($table);
+        return response()->json($group);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Table $table
+     * @param Group $group
      * @return Response
      */
-    public function destroy(Table $table)
+    public function destroy(Group $group)
     {
-        $table->delete();
+        $group->delete();
 
         return response('', 200);
     }

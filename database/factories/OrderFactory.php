@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Table;
+use App\Models\Group;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +18,7 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'tables_id' => Table::factory()->create()->id
+            'groups_id' => Group::factory()->create()->id
         ];
     }
 }

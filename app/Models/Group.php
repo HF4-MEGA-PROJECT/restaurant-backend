@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
-class Table extends Model
+class Group extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -31,12 +31,12 @@ class Table extends Model
     }
 
     public static function currentTables(): array {
-        return DB::table('tables', 't')
-                    ->select(['t.id', 't.amount_of_people', 't.number', 't.created_at', 't.deleted_at', DB::RAW('SUM(order_products.price) AS order_total')])
-                    ->leftJoin('orders', 't.id', '=', 'orders.tables_id')
+        return DB::table('groups', 'g')
+                    ->select(['g.id', 'g.amount_of_people', 'g.number', 'g.created_at', 'g.deleted_at', DB::RAW('SUM(order_products.price) AS order_total')])
+                    ->leftJoin('orders', 'g.id', '=', 'orders.tables_id')
                     ->leftJoin('order_products', 'order_products.orders_id', '=', 'orders.id')
-                    ->where('t.deleted_at', '=', null)
-                    ->groupBy(['t.id', 't.amount_of_people', 't.number', 't.created_at', 't.deleted_at'])
+                    ->where('g.deleted_at', '=', null)
+                    ->groupBy(['g.id', 'g.amount_of_people', 'g.number', 'g.created_at', 'g.deleted_at'])
                     ->get()
                     ->toArray();
     }

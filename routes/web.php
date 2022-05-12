@@ -30,11 +30,11 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard', [
-            'totalGuests' => \App\Models\Table::totalGuests(),
+            'totalGuests' => \App\Models\Group::totalGuests(),
             'revenueThisMonth' => \App\Models\OrderProduct::revenueThisMonth(),
             'productsSoldThisMonth' => \App\Models\OrderProduct::productsSoldThisMonth()->count(),
             'reservationsToday' => \App\Models\Reservation::reservationsToday(),
-            'currentTables' => \App\Models\Table::currentTables()
+            'currentTables' => \App\Models\Group::currentTables()
         ]);
     })->name('dashboard');
 });
