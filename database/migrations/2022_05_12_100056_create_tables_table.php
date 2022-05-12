@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->integer('amount_of_people');
-            $table->string('number', 45);
+            $table->Integer('number');
             $table->timestamps();
             $table->softDeletes();
         });

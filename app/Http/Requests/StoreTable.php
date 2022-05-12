@@ -25,7 +25,7 @@ class StoreTable extends FormRequest
     {
         return [
             'amount_of_people' => 'required|integer|gt:0',
-            'number' => 'nullable|string|max:45'
+            'number' => 'required|integer'
         ];
     }
 }

@@ -18,7 +18,7 @@ class TableFactory extends Factory
     {
         return [
             'amount_of_people' => $this->faker->numberBetween(1, 16),
-            'number' => $this->faker->text(45)
+            'number' => $this->faker->numberBetween(1, 999)
         ];
     }
 }

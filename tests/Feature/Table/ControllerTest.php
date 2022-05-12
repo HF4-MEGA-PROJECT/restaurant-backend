@@ -55,14 +55,14 @@ class ControllerTest extends TestCase
 
         $response = $this->postJson(route('table.store'), [
             'amount_of_people' => 2,
-            'number' => 'Bord 1'
+            'number' => 1
         ]);
 
         $tables = Table::all();
 
         $this->assertCount(1, $tables);
         $this->assertEquals(2, $tables->first()->amount_of_people);
-        $this->assertEquals('Bord 1', $tables->first()->number);
+        $this->assertEquals(1, $tables->first()->number);
 
         $expected = $tables->first()->toArray();
 
@@ -77,7 +77,7 @@ class ControllerTest extends TestCase
 
         $response = $this->postJson(route('table.store'), [
             'amount_of_people' => 0,
-            'number' => 'Bord 1'
+            'number' => 1
         ]);
 
         $tables = Table::all();
@@ -87,13 +87,13 @@ class ControllerTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function test_table_can_not_be_created_when_number_exceeds_max_length()
+    public function test_table_can_not_be_created_when_number_is_invalid()
     {
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('table.store'), [
             'amount_of_people' => 2,
-            'number' => 'Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string',
+            'number' => 'ikke et tal',
         ]);
 
         $tables = Table::all();
@@ -123,14 +123,14 @@ class ControllerTest extends TestCase
         $response = $this->putJson(route('table.update', $table), [
             'id' => $table->id,
             'amount_of_people' => 2,
-            'number' => 'Bord 1'
+            'number' => 1
         ]);
 
         $tables = Table::all();
 
         $this->assertCount(1, $tables);
         $this->assertEquals(2, $tables->first()->amount_of_people);
-        $this->assertEquals('Bord 1', $tables->first()->number);
+        $this->assertEquals(1, $tables->first()->number);
 
         $response->assertExactJson($tables->first()->toArray());
     }
@@ -143,7 +143,7 @@ class ControllerTest extends TestCase
 
         $response = $this->putJson(route('table.update', $table), [
             'amount_of_people' => 0,
-            'number' => 'Bord 1',
+            'number' => 1
         ]);
 
         $tables = Table::all();
@@ -155,7 +155,7 @@ class ControllerTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function test_table_can_not_be_updated_when_number_exceeds_max_length()
+    public function test_table_can_not_be_updated_when_number_is_invalid()
     {
         $table = Table::factory()->create();
 
@@ -163,7 +163,7 @@ class ControllerTest extends TestCase
 
         $response = $this->putJson(route('table.update', $table), [
             'amount_of_people' => 2,
-            'number' => 'Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string',
+            'number' => 'ikke et tal',
         ]);
 
         $tables = Table::all();

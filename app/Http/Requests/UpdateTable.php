@@ -26,7 +26,7 @@ class UpdateTable extends FormRequest
         return [
             'id' => 'required|integer|exists:tables,id',
             'amount_of_people' => 'required|integer|gt:0',
-            'number' => 'nullable|string|max:45'
+            'number' => 'required|integer'
         ];
     }
 }
