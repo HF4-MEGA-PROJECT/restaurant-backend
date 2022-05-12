@@ -23,3 +23,4 @@ Route::apiResource('product', \App\Http\Controllers\ProductController::class);
 Route::apiResource('reservation', \App\Http\Controllers\ReservationController::class);
 Route::apiResource('setting', \App\Http\Controllers\SettingController::class);
 Route::apiResource('table', \App\Http\Controllers\TableController::class);
+Route::apiResource('order', \App\Http\Controllers\OrderController::class);
