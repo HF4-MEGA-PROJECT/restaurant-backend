@@ -128,7 +128,12 @@ class ControllerTest extends TestCase
         $this->assertEquals('max_amount_of_people', $settings->first()->key);
         $this->assertEquals(64, $settings->first()->value);
 
-        $response->assertExactJson($settings->first()->toArray());
+        $expected = $settings->first()->toArray();
+
+        unset($expected['created_at']);
+        unset($expected['updated_at']);
+
+        $response->assertJsonFragment($expected);
     }
 
     public function test_setting_can_not_be_updated_when_key_exceeds_max_length()
