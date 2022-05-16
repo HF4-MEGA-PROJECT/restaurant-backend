@@ -25,3 +25,4 @@ Route::apiResource('setting', \App\Http\Controllers\SettingController::class);
 Route::apiResource('table', \App\Http\Controllers\TableController::class);
 Route::apiResource('order', \App\Http\Controllers\OrderController::class);
 Route::apiResource('order_product', \App\Http\Controllers\OrderProductController::class);
+Route::apiResource('ingredient', \App\Http\Controllers\IngredientController::class);
