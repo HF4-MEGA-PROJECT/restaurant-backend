@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOrderProduct;
 use App\Http\Requests\UpdateOrderProduct;
 use App\Models\OrderProduct;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class OrderProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index()
     {
@@ -22,28 +24,28 @@ class OrderProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreOrderProduct $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(StoreOrderProduct $request)
     {
         $validated = $request->validated();
 
-        $order = new OrderProduct([
+        $orderProduct = new OrderProduct([
             'price' => $validated['price'],
             'products_id' => $validated['products_id'],
             'orders_id' => $validated['orders_id']
         ]);
 
-        $order->save();
+        $orderProduct->save();
 
-        return response()->json($order, 201);
+        return response()->json($orderProduct, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\OrderProduct  $orderProduct
-     * @return \Illuminate\Http\JsonResponse
+     * @param OrderProduct $orderProduct
+     * @return JsonResponse
      */
     public function show(OrderProduct $orderProduct)
     {
@@ -53,9 +55,9 @@ class OrderProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OrderProduct  $orderProduct
-     * @return \Illuminate\Http\JsonResponse
+     * @param UpdateOrderProduct $request
+     * @param OrderProduct $orderProduct
+     * @return JsonResponse
      */
     public function update(UpdateOrderProduct $request, OrderProduct $orderProduct)
     {
@@ -73,8 +75,8 @@ class OrderProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\OrderProduct  $orderProduct
-     * @return \Illuminate\Http\Response
+     * @param OrderProduct $orderProduct
+     * @return Response
      */
     public function destroy(OrderProduct $orderProduct)
     {
