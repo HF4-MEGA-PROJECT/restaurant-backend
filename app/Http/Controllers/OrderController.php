@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOrder;
 use App\Http\Requests\UpdateOrder;
 use App\Models\Order;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index()
     {
@@ -22,8 +24,8 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param StoreOrder $request
+     * @return JsonResponse
      */
     public function store(StoreOrder $request)
     {
@@ -41,8 +43,8 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\JsonResponse
+     * @param Order $order
+     * @return JsonResponse
      */
     public function show(Order $order)
     {
@@ -52,9 +54,9 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\JsonResponse
+     * @param UpdateOrder $request
+     * @param Order $order
+     * @return JsonResponse
      */
     public function update(UpdateOrder $request, Order $order)
     {
@@ -70,8 +72,8 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
+     * @param Order $order
+     * @return Response
      */
     public function destroy(Order $order)
     {

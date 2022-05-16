@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProduct;
 use App\Http\Requests\UpdateProduct;
 use App\Models\Product;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index()
     {
@@ -22,7 +24,7 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreProduct $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(StoreProduct $request)
     {
@@ -42,8 +44,8 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\JsonResponse
+     * @param Product $product
+     * @return JsonResponse
      */
     public function show(Product $product)
     {
@@ -54,8 +56,8 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdateProduct $request
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\JsonResponse
+     * @param Product $product
+     * @return JsonResponse
      */
     public function update(UpdateProduct $request, Product $product)
     {
@@ -73,8 +75,8 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return Response
      */
     public function destroy(Product $product)
     {

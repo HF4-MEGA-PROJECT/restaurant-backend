@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSetting;
 use App\Http\Requests\UpdateSetting;
 use App\Models\Setting;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index()
     {
@@ -21,8 +23,8 @@ class SettingController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param StoreSetting $request
+     * @return JsonResponse
      */
     public function store(StoreSetting $request)
     {
@@ -41,8 +43,8 @@ class SettingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\JsonResponse
+     * @param Setting $setting
+     * @return JsonResponse
      */
     public function show(Setting $setting)
     {
@@ -52,9 +54,9 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\JsonResponse
+     * @param UpdateSetting $request
+     * @param Setting $setting
+     * @return JsonResponse
      */
     public function update(UpdateSetting $request, Setting $setting)
     {
@@ -71,8 +73,8 @@ class SettingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
+     * @param Setting $setting
+     * @return Response
      */
     public function destroy(Setting $setting)
     {

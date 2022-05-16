@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTable;
 use App\Http\Requests\UpdateTable;
 use App\Models\Table;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class TableController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index()
     {
@@ -22,7 +24,7 @@ class TableController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreTable $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(StoreTable $request)
     {
@@ -41,8 +43,8 @@ class TableController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Table  $table
-     * @return \Illuminate\Http\JsonResponse
+     * @param Table $table
+     * @return JsonResponse
      */
     public function show(Table $table)
     {
@@ -53,8 +55,8 @@ class TableController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdateTable $request
-     * @param \App\Models\Table $table
-     * @return \Illuminate\Http\JsonResponse
+     * @param Table $table
+     * @return JsonResponse
      */
     public function update(UpdateTable $request, Table $table)
     {
@@ -71,8 +73,8 @@ class TableController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Table  $table
-     * @return \Illuminate\Http\Response
+     * @param Table $table
+     * @return Response
      */
     public function destroy(Table $table)
     {

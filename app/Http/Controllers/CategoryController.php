@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategory;
 use App\Http\Requests\UpdateCategory;
 use App\Models\Category;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index()
     {
@@ -22,7 +24,7 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreCategory $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(StoreCategory $request)
     {
@@ -41,8 +43,8 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\JsonResponse
+     * @param Category $category
+     * @return JsonResponse
      */
     public function show(Category $category)
     {
@@ -52,9 +54,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\JsonResponse
+     * @param UpdateCategory $request
+     * @param Category $category
+     * @return JsonResponse
      */
     public function update(UpdateCategory $request, Category $category)
     {
@@ -71,8 +73,8 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return Response
      */
     public function destroy(Category $category)
     {

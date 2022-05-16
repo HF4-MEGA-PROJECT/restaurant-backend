@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreIngredient;
 use App\Http\Requests\UpdateIngredient;
 use App\Models\Ingredient;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class IngredientController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index()
     {
@@ -22,7 +24,7 @@ class IngredientController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreIngredient $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(StoreIngredient $request)
     {
@@ -41,8 +43,8 @@ class IngredientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ingredient  $ingredient
-     * @return \Illuminate\Http\JsonResponse
+     * @param Ingredient $ingredient
+     * @return JsonResponse
      */
     public function show(Ingredient $ingredient)
     {
@@ -53,8 +55,8 @@ class IngredientController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdateIngredient $request
-     * @param \App\Models\Ingredient $ingredient
-     * @return \Illuminate\Http\JsonResponse
+     * @param Ingredient $ingredient
+     * @return JsonResponse
      */
     public function update(UpdateIngredient $request, Ingredient $ingredient)
     {
@@ -71,8 +73,8 @@ class IngredientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ingredient  $ingredient
-     * @return \Illuminate\Http\Response
+     * @param Ingredient $ingredient
+     * @return Response
      */
     public function destroy(Ingredient $ingredient)
     {
