@@ -19,7 +19,7 @@ class Table extends Model
     }
 
     public static function totalGuests(): int {
-        $tables = Table::query()->where('deleted_at', '=', null)->get();
+        $tables = self::query()->where('deleted_at', '=', null)->get();
 
         $total_guests = 0;
 

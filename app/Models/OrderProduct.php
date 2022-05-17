@@ -38,6 +38,6 @@ class OrderProduct extends Model
      * @return OrderProduct[]|Collection
      */
     public static function productsSoldThisMonth(): Collection|array {
-        return OrderProduct::query()->whereMonth('created_at', '=', date('m'))->whereYear('created_at', '=', date('Y'))->get();
+        return self::query()->whereMonth('created_at', '=', date('m'))->whereYear('created_at', '=', date('Y'))->get();
     }
 }

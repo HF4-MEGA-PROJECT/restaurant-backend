@@ -13,6 +13,6 @@ class Reservation extends Model
     protected $fillable = ['name', 'email', 'phone', 'time', 'amount_of_people'];
 
     public static function reservationsToday(): int {
-        return Reservation::query()->whereDate('time', '=', Carbon::today())->count();
+        return self::query()->whereDate('time', '=', Carbon::today())->count();
     }
 }
