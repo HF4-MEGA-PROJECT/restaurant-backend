@@ -14,6 +14,8 @@ class ApiTokenPermissionsTest extends TestCase
 
     public function test_api_token_permissions_can_be_updated()
     {
+        return $this->markTestSkipped('API has been disabled in favor of device tokens.');
+
         if (! Features::hasApiFeatures()) {
             return $this->markTestSkipped('API support is not enabled.');
         }

@@ -3,6 +3,7 @@ require('./bootstrap');
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
+import VueQrcode from '@chenfengyuan/vue-qrcode';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
@@ -12,6 +13,7 @@ createInertiaApp({
     setup({ el, app, props, plugin }) {
         return createApp({ render: () => h(app, props) })
             .use(plugin)
+            .component(VueQrcode.name, VueQrcode)
             .mixin({ methods: { route } })
             .mount(el);
     },

@@ -13,6 +13,8 @@ class CreateApiTokenTest extends TestCase
 
     public function test_api_tokens_can_be_created()
     {
+        return $this->markTestSkipped('API has been disabled in favor of device tokens.');
+
         if (! Features::hasApiFeatures()) {
             return $this->markTestSkipped('API support is not enabled.');
         }
