@@ -29,6 +29,12 @@ Route::middleware([
     config('jetstream.auth_session'),
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', [
+            'totalGuests' => \App\Models\Table::totalGuests(),
+            'revenueThisMonth' => \App\Models\OrderProduct::revenueThisMonth(),
+            'productsSoldThisMonth' => \App\Models\OrderProduct::productsSoldThisMonth()->count(),
+            'reservationsToday' => \App\Models\Reservation::reservationsToday(),
+            'currentTables' => \App\Models\Table::currentTables()
+        ]);
     })->name('dashboard');
 });
