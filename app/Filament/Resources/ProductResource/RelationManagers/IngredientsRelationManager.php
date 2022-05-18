@@ -18,13 +18,12 @@ class IngredientsRelationManager extends BelongsToManyRelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('category_id'),
                 Forms\Components\TextInput::make('name')
                     ->required()
+                    ->unique()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('price'),
-                Forms\Components\TextInput::make('photo_path')
-                    ->maxLength(2048),
+                Forms\Components\Toggle::make('is_in_stock')
+                    ->required(),
             ]);
     }
 
@@ -32,15 +31,11 @@ class IngredientsRelationManager extends BelongsToManyRelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category_id'),
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('price'),
-                Tables\Columns\TextColumn::make('photo_path'),
+                Tables\Columns\BooleanColumn::make('is_in_stock'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime(),
             ])
             ->filters([
