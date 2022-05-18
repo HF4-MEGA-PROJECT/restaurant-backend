@@ -31,7 +31,7 @@ class ProductsRelationManager extends BelongsToManyRelationManager
         return $form
             ->schema([
                 static::getAttachFormRecordSelect(),
-                Forms\Components\TextInput::make('price')->required(),
+                Forms\Components\TextInput::make('price_at_purchase')->required(),
             ]);
     }
 
