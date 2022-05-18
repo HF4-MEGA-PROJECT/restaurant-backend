@@ -33,7 +33,8 @@ class ProductController extends Controller
         $product = new Product([
             'name' => $validated['name'],
             'price' => $validated['price'],
-            'category_id' => $validated['category_id']
+            'category_id' => $validated['category_id'],
+            'photo_path' => $validated['photo_path'],
         ]);
 
         $product->save();
@@ -66,7 +67,8 @@ class ProductController extends Controller
         $product->update([
             'name' => $validated['name'],
             'price' => $validated['price'],
-            'category_id' => $validated['category_id']
+            'category_id' => $validated['category_id'],
+            'photo_path' => $validated['photo_path'],
         ]);
 
         return response()->json($product);

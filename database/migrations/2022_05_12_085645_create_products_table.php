@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name')->nullable(false);
             $table->double('price')->nullable(true);
             $table->unsignedBigInteger('category_id')->nullable(true);
+            $table->string('photo_path', 2048)->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -56,7 +56,8 @@ class ControllerTest extends TestCase
         $response = $this->postJson(route('product.store'), [
             'name' => 'Tigerrejesalat',
             'price' => 123,
-            'category_id' => null
+            'category_id' => null,
+            'photo_path' => null,
         ]);
 
         $products = Product::all();
@@ -145,7 +146,8 @@ class ControllerTest extends TestCase
             'id' => $product->id,
             'name' => 'Tigerrejesalat',
             'price' => 123,
-            'category_id' => null
+            'category_id' => null,
+            'photo_path' => null,
         ]);
 
         $products = Product::all();

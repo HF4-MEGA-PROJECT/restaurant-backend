@@ -42,6 +42,7 @@ class ProductsRelationManager extends BelongsToManyRelationManager
                 Tables\Columns\TextColumn::make('category_id'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('price'),
+                Tables\Columns\TextColumn::make('price_at_purchase'),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime(),
             ])
