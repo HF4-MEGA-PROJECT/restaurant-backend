@@ -25,7 +25,7 @@ class UpdateOrderProduct extends FormRequest
     {
         return [
             'id' => 'required|integer|exists:order_products,id',
-            'price' => 'required|numeric',
+            'price_at_purchase' => 'required|numeric',
             'product_id' => 'required|integer|exists:products,id',
             'order_id' => 'required|integer|exists:orders,id'
         ];

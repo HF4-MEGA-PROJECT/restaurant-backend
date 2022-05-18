@@ -23,6 +23,7 @@ class IngredientResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
+                    ->unique()
                     ->maxLength(255),
                 Forms\Components\Toggle::make('is_in_stock')
                     ->required(),
@@ -44,14 +45,14 @@ class IngredientResource extends Resource
                 //
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [

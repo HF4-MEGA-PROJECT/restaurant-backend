@@ -4,21 +4,15 @@ namespace App\Filament\Resources\ProductResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\HasManyThroughRelationManager;
+use Filament\Resources\RelationManagers\BelongsToManyRelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class IngredientsRelationManager extends HasManyThroughRelationManager
+class IngredientsRelationManager extends BelongsToManyRelationManager
 {
     protected static string $relationship = 'ingredients';
 
     protected static ?string $recordTitleAttribute = 'name';
-
-    protected static bool $hasAssociateAction = true;
-    protected static bool $hasDissociateAction = true;
-    protected static bool $hasDissociateBulkAction = true;
-
-    protected static ?string $inverseRelationship = 'products';
 
     public static function form(Form $form): Form
     {
@@ -26,6 +20,7 @@ class IngredientsRelationManager extends HasManyThroughRelationManager
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
+                    ->unique()
                     ->maxLength(255),
                 Forms\Components\Toggle::make('is_in_stock')
                     ->required(),

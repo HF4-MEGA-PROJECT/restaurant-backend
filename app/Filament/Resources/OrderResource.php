@@ -21,7 +21,7 @@ class OrderResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('tables_id')
+                Forms\Components\TextInput::make('group_id')
                     ->required(),
             ]);
     }
@@ -30,7 +30,7 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('tables_id'),
+                Tables\Columns\TextColumn::make('group_id'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -40,14 +40,14 @@ class OrderResource extends Resource
                 //
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ProductsRelationManager::class,
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [

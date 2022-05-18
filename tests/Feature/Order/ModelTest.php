@@ -29,7 +29,7 @@ class ModelTest extends TestCase
     {
         $order = Order::factory()->create();
         $product = Product::factory()->create();
-        $orderProduct = OrderProduct::factory()->create(['price' => 123, 'order_id' => $order->id, 'product_id' => $product->id]);
+        $orderProduct = OrderProduct::factory()->create(['price_at_purchase' => 123, 'order_id' => $order->id, 'product_id' => $product->id]);
 
         $result = $order->products()->first()->toArray();
 
