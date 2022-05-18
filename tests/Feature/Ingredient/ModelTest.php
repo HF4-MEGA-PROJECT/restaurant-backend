@@ -16,7 +16,7 @@ class ModelTest extends TestCase
     {
         $ingredient = Ingredient::factory()->create();
         $product = Product::factory()->create();
-        ProductIngredient::factory()->create(['ingredients_id' => $ingredient->id, 'products_id' => $product->id]);
+        ProductIngredient::factory()->create(['ingredient_id' => $ingredient->id, 'product_id' => $product->id]);
 
         $result = $ingredient->products()->first()->toArray();
 

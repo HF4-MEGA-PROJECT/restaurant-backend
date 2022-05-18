@@ -15,7 +15,7 @@ class Group extends Model
     protected $fillable = ['amount_of_people', 'number'];
 
     public function orders(): HasMany {
-        return $this->hasMany(Order::class, 'orders_id', 'id');
+        return $this->hasMany(Order::class, 'order_id', 'id');
     }
 
     public static function totalGuests(): int {
@@ -33,8 +33,8 @@ class Group extends Model
     public static function currentTables(): array {
         return DB::table('groups', 'g')
                     ->select(['g.id', 'g.amount_of_people', 'g.number', 'g.created_at', 'g.deleted_at', DB::RAW('SUM(order_products.price) AS order_total')])
-                    ->leftJoin('orders', 'g.id', '=', 'orders.groups_id')
-                    ->leftJoin('order_products', 'order_products.orders_id', '=', 'orders.id')
+                    ->leftJoin('orders', 'g.id', '=', 'orders.group_id')
+                    ->leftJoin('order_products', 'order_products.order_id', '=', 'orders.id')
                     ->where('g.deleted_at', '=', null)
                     ->groupBy(['g.id', 'g.amount_of_people', 'g.number', 'g.created_at', 'g.deleted_at'])
                     ->get()

@@ -11,13 +11,13 @@ class ProductIngredient extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['products_id', 'ingredients_id'];
+    protected $fillable = ['product_id', 'ingredient_id'];
 
     public function ingredient(): HasOne {
-        return $this->hasOne(Ingredient::class, 'id', 'ingredients_id');
+        return $this->hasOne(Ingredient::class, 'id', 'ingredient_id');
     }
 
     public function product(): BelongsTo {
-        return $this->belongsTo(Product::class, 'products_id', 'id');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }

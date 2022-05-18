@@ -12,14 +12,14 @@ class OrderProduct extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['price', 'products_id', 'orders_id'];
+    protected $fillable = ['price', 'product_id', 'order_id'];
 
     public function product(): HasOne {
-        return $this->hasOne(Product::class, 'id', 'products_id');
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
 
     public function order(): BelongsTo {
-        return $this->belongsTo(Order::class, 'orders_id', 'id');
+        return $this->belongsTo(Order::class, 'order_id', 'id');
     }
 
     public static function revenueThisMonth(): float {

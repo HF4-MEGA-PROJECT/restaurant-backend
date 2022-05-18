@@ -19,8 +19,8 @@ class ProductIngredientFactory extends Factory
     public function definition()
     {
         return [
-            'products_id' => Product::factory()->create()->id,
-            'ingredients_id' => Ingredient::factory()->create()->id
+            'product_id' => Product::factory()->create()->id,
+            'ingredient_id' => Ingredient::factory()->create()->id
         ];
     }
 }

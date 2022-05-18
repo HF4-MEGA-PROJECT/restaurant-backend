@@ -25,8 +25,8 @@ class UpdateProductIngredient extends FormRequest
     {
         return [
             'id' => 'required|integer|exists:product_ingredients,id',
-            'products_id' => 'required|integer|exists:products,id',
-            'ingredients_id' => 'required|integer|exists:ingredients,id'
+            'product_id' => 'required|integer|exists:products,id',
+            'ingredient_id' => 'required|integer|exists:ingredients,id'
         ];
     }
 }

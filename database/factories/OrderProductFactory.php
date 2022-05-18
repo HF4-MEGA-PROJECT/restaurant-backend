@@ -20,8 +20,8 @@ class OrderProductFactory extends Factory
     {
         return [
             'price' => $this->faker->numberBetween(),
-            'products_id' => Product::factory()->create()->id,
-            'orders_id' => Order::factory()->create()->id,
+            'product_id' => Product::factory()->create()->id,
+            'order_id' => Order::factory()->create()->id,
         ];
     }
 }

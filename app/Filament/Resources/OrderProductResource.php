@@ -21,9 +21,9 @@ class OrderProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('products_id')
+                Forms\Components\TextInput::make('product_id')
                     ->required(),
-                Forms\Components\TextInput::make('orders_id')
+                Forms\Components\TextInput::make('order_id')
                     ->required(),
                 Forms\Components\TextInput::make('price')
                     ->required(),
@@ -34,8 +34,8 @@ class OrderProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('products_id'),
-                Tables\Columns\TextColumn::make('orders_id'),
+                Tables\Columns\TextColumn::make('product_id'),
+                Tables\Columns\TextColumn::make('order_id'),
                 Tables\Columns\TextColumn::make('price'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
@@ -46,14 +46,14 @@ class OrderProductResource extends Resource
                 //
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [

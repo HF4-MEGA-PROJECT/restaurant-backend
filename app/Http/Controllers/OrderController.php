@@ -32,7 +32,7 @@ class OrderController extends Controller
         $validated = $request->validated();
 
         $order = new Order([
-            'groups_id' => $validated['groups_id']
+            'group_id' => $validated['group_id']
         ]);
 
         $order->save();
@@ -63,7 +63,7 @@ class OrderController extends Controller
         $validated = $request->validated();
 
         $order->update([
-            'groups_id' => $validated['groups_id']
+            'group_id' => $validated['group_id']
         ]);
 
         return response()->json($order);

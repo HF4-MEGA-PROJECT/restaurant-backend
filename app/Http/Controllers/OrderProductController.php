@@ -32,8 +32,8 @@ class OrderProductController extends Controller
 
         $orderProduct = new OrderProduct([
             'price' => $validated['price'],
-            'products_id' => $validated['products_id'],
-            'orders_id' => $validated['orders_id']
+            'product_id' => $validated['product_id'],
+            'order_id' => $validated['order_id']
         ]);
 
         $orderProduct->save();
@@ -65,8 +65,8 @@ class OrderProductController extends Controller
 
         $orderProduct->update([
             'price' => $validated['price'],
-            'products_id' => $validated['products_id'],
-            'orders_id' => $validated['orders_id']
+            'product_id' => $validated['product_id'],
+            'order_id' => $validated['order_id']
         ]);
 
         return response()->json($orderProduct);

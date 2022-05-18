@@ -56,7 +56,7 @@ class ControllerTest extends TestCase
         $response = $this->postJson(route('product.store'), [
             'name' => 'Tigerrejesalat',
             'price' => 123,
-            'categories_id' => null
+            'category_id' => null
         ]);
 
         $products = Product::all();
@@ -64,7 +64,7 @@ class ControllerTest extends TestCase
         $this->assertCount(1, $products);
         $this->assertEquals('Tigerrejesalat', $products->first()->name);
         $this->assertEquals(123, $products->first()->price);
-        $this->assertEquals(null, $products->first()->categories_id);
+        $this->assertEquals(null, $products->first()->category_id);
 
         $expected = $products->first()->toArray();
 
@@ -80,7 +80,7 @@ class ControllerTest extends TestCase
         $response = $this->postJson(route('product.store'), [
             'name' => 'Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string',
             'price' => 123,
-            'categories_id' => null
+            'category_id' => null
         ]);
 
         $products = Product::all();
@@ -97,7 +97,7 @@ class ControllerTest extends TestCase
         $response = $this->postJson(route('product.store'), [
             'name' => 'Tigerrejesalat',
             'price' => 'ikke et tal',
-            'categories_id' => null
+            'category_id' => null
         ]);
 
         $products = Product::all();
@@ -114,7 +114,7 @@ class ControllerTest extends TestCase
         $response = $this->postJson(route('product.store'), [
             'name' => 'Tigerrejesalat',
             'price' => 123,
-            'categories_id' => 1
+            'category_id' => 1
         ]);
 
         $products = Product::all();
@@ -145,7 +145,7 @@ class ControllerTest extends TestCase
             'id' => $product->id,
             'name' => 'Tigerrejesalat',
             'price' => 123,
-            'categories_id' => null
+            'category_id' => null
         ]);
 
         $products = Product::all();
@@ -153,7 +153,7 @@ class ControllerTest extends TestCase
         $this->assertCount(1, $products);
         $this->assertEquals('Tigerrejesalat', $products->first()->name);
         $this->assertEquals(123, $products->first()->price);
-        $this->assertEquals(null, $products->first()->categories_id);
+        $this->assertEquals(null, $products->first()->category_id);
 
         $response->assertExactJson($products->first()->toArray());
     }
@@ -168,7 +168,7 @@ class ControllerTest extends TestCase
             'id' => $product->id,
             'name' => 'Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string',
             'price' => 123,
-            'categories_id' => null
+            'category_id' => null
         ]);
 
         $products = Product::all();
@@ -176,7 +176,7 @@ class ControllerTest extends TestCase
         $this->assertCount(1, $products);
         $this->assertEquals($product->name, $products->first()->name);
         $this->assertEquals($product->price, $products->first()->price);
-        $this->assertEquals($product->categories_id, $products->first()->categories_id);
+        $this->assertEquals($product->category_id, $products->first()->category_id);
 
         $response->assertStatus(422);
     }
@@ -191,7 +191,7 @@ class ControllerTest extends TestCase
             'id' => $product->id,
             'name' => 'Tigerrejesalat',
             'price' => 'ikke et tal',
-            'categories_id' => null
+            'category_id' => null
         ]);
 
         $products = Product::all();
@@ -199,7 +199,7 @@ class ControllerTest extends TestCase
         $this->assertCount(1, $products);
         $this->assertEquals($product->name, $products->first()->name);
         $this->assertEquals($product->price, $products->first()->price);
-        $this->assertEquals($product->categories_id, $products->first()->categories_id);
+        $this->assertEquals($product->category_id, $products->first()->category_id);
 
         $response->assertStatus(422);
     }
@@ -214,7 +214,7 @@ class ControllerTest extends TestCase
             'id' => $product->id,
             'name' => 'Tigerrejesalat',
             'price' => 123,
-            'categories_id' => 0
+            'category_id' => 0
         ]);
 
         $products = Product::all();
@@ -222,7 +222,7 @@ class ControllerTest extends TestCase
         $this->assertCount(1, $products);
         $this->assertEquals($product->name, $products->first()->name);
         $this->assertEquals($product->price, $products->first()->price);
-        $this->assertEquals($product->categories_id, $products->first()->categories_id);
+        $this->assertEquals($product->category_id, $products->first()->category_id);
 
         $response->assertStatus(422);
     }

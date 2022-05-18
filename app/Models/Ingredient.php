@@ -13,6 +13,6 @@ class Ingredient extends Model
     protected $fillable = ['name', 'is_in_stock'];
 
     public function products(): HasManyThrough {
-        return $this->hasManyThrough(Product::class, ProductIngredient::class, 'ingredients_id', 'id', null, 'products_id');
+        return $this->hasManyThrough(Product::class, ProductIngredient::class, 'ingredient_id', 'id', null, 'product_id');
     }
 }

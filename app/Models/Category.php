@@ -11,13 +11,13 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'categories_id'];
+    protected $fillable = ['name', 'category_id'];
 
     public function sub_categories(): HasMany {
-        return $this->hasMany(Category::class, 'categories_id', 'id');
+        return $this->hasMany(Category::class, 'category_id', 'id');
     }
 
     public function parent_category(): BelongsTo {
-        return $this->belongsTo(Category::class, 'categories_id', 'id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

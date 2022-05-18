@@ -21,9 +21,9 @@ class ProductIngredientResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('products_id')
+                Forms\Components\TextInput::make('product_id')
                     ->required(),
-                Forms\Components\TextInput::make('ingredients_id')
+                Forms\Components\TextInput::make('ingredient_id')
                     ->required(),
             ]);
     }
@@ -32,8 +32,8 @@ class ProductIngredientResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('products_id'),
-                Tables\Columns\TextColumn::make('ingredients_id'),
+                Tables\Columns\TextColumn::make('product_id'),
+                Tables\Columns\TextColumn::make('ingredient_id'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -43,14 +43,14 @@ class ProductIngredientResource extends Resource
                 //
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [

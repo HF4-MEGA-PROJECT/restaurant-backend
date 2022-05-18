@@ -26,8 +26,8 @@ class UpdateOrderProduct extends FormRequest
         return [
             'id' => 'required|integer|exists:order_products,id',
             'price' => 'required|numeric',
-            'products_id' => 'required|integer|exists:products,id',
-            'orders_id' => 'required|integer|exists:orders,id'
+            'product_id' => 'required|integer|exists:products,id',
+            'order_id' => 'required|integer|exists:orders,id'
         ];
     }
 }

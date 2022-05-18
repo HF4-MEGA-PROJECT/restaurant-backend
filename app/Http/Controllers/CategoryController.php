@@ -32,7 +32,7 @@ class CategoryController extends Controller
 
         $category = new Category([
             'name' => $validated['name'],
-            'categories_id' => $validated['categories_id']
+            'category_id' => $validated['category_id']
         ]);
 
         $category->save();
@@ -64,7 +64,7 @@ class CategoryController extends Controller
 
         $category->update([
             'name' => $validated['name'],
-            'categories_id' => $validated['categories_id']
+            'category_id' => $validated['category_id']
         ]);
 
         return response()->json($category);

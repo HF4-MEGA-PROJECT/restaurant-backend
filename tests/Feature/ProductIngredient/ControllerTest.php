@@ -59,15 +59,15 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('product_ingredient.store'), [
-            'products_id' => $product->id,
-            'ingredients_id' => $ingredient->id
+            'product_id' => $product->id,
+            'ingredient_id' => $ingredient->id
         ]);
 
         $productIngredients = ProductIngredient::all();
 
         $this->assertCount(1, $productIngredients);
-        $this->assertEquals($product->id, $productIngredients->first()->products_id);
-        $this->assertEquals($ingredient->id, $productIngredients->first()->ingredients_id);
+        $this->assertEquals($product->id, $productIngredients->first()->product_id);
+        $this->assertEquals($ingredient->id, $productIngredients->first()->ingredient_id);
 
         $response->assertExactJson($productIngredients->first()->toArray());
     }
@@ -79,7 +79,7 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('product_ingredient.store'), [
-            'products_id' => 0,
+            'product_id' => 0,
             'ingredient_id' => $ingredient->id
         ]);
 
@@ -97,7 +97,7 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('product_ingredient.store'), [
-            'products_id' => $product->id,
+            'product_id' => $product->id,
             'ingredient_id' => 0
         ]);
 
@@ -129,15 +129,15 @@ class ControllerTest extends TestCase
 
         $response = $this->putJson(route('product_ingredient.update', $productIngredient), [
             'id' => $productIngredient->id,
-            'products_id' => $product->id,
-            'ingredients_id' => $ingredient->id
+            'product_id' => $product->id,
+            'ingredient_id' => $ingredient->id
         ]);
 
         $productIngredients = ProductIngredient::all();
 
         $this->assertCount(1, $productIngredients);
-        $this->assertEquals($product->id, $productIngredients->first()->products_id);
-        $this->assertEquals($ingredient->id, $productIngredients->first()->ingredients_id);
+        $this->assertEquals($product->id, $productIngredients->first()->product_id);
+        $this->assertEquals($ingredient->id, $productIngredients->first()->ingredient_id);
 
         $response->assertExactJson($productIngredients->first()->toArray());
     }
@@ -152,14 +152,14 @@ class ControllerTest extends TestCase
         $response = $this->putJson(route('product_ingredient.update', $productIngredient), [
             'id' => $productIngredient->id,
             'price' => 123,
-            'products_id' => 0,
+            'product_id' => 0,
             'ingredient_id' => $ingredient->id
         ]);
 
         $productIngredients = ProductIngredient::all();
 
         $this->assertCount(1, $productIngredients);
-        $this->assertEquals($productIngredient->products_id, $productIngredients->first()->products_id);
+        $this->assertEquals($productIngredient->product_id, $productIngredients->first()->product_id);
         $this->assertEquals($productIngredient->ingredient_id, $productIngredients->first()->ingredient_id);
 
         $response->assertStatus(422);
@@ -175,7 +175,7 @@ class ControllerTest extends TestCase
         $response = $this->putJson(route('product_ingredient.update', $productIngredient), [
             'id' => $productIngredient->id,
             'price' => 123,
-            'products_id' => $product->id,
+            'product_id' => $product->id,
             'ingredient_id' => 0
         ]);
 
@@ -183,7 +183,7 @@ class ControllerTest extends TestCase
 
         $this->assertCount(1, $productIngredients);
         $this->assertEquals($productIngredient->price, $productIngredients->first()->price);
-        $this->assertEquals($productIngredient->products_id, $productIngredients->first()->products_id);
+        $this->assertEquals($productIngredient->product_id, $productIngredients->first()->product_id);
         $this->assertEquals($productIngredient->ingredient_id, $productIngredients->first()->ingredient_id);
 
         $response->assertStatus(422);

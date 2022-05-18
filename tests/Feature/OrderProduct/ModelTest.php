@@ -15,7 +15,7 @@ class ModelTest extends TestCase
     public function test_can_get_product()
     {
         $product = Product::factory()->create();
-        $orderProduct = OrderProduct::factory()->create(['products_id' => $product->id]);
+        $orderProduct = OrderProduct::factory()->create(['product_id' => $product->id]);
 
         $result = $orderProduct->product()->first()->toArray();
 
@@ -27,7 +27,7 @@ class ModelTest extends TestCase
     public function test_can_get_order()
     {
         $order = Order::factory()->create();
-        $orderProduct = OrderProduct::factory()->create(['orders_id' => $order->id]);
+        $orderProduct = OrderProduct::factory()->create(['order_id' => $order->id]);
 
         $this->assertEquals($order->toArray(), $orderProduct->order()->first()->toArray());
     }

@@ -15,10 +15,10 @@ class ModelTest extends TestCase
 
     public function test_can_get_parent_category()
     {
-        $category = new Category(['name' => 'Hovedretter', 'categories_id' => null]);
+        $category = new Category(['name' => 'Hovedretter', 'category_id' => null]);
         $category->save();
 
-        $product = new Product(['name' => 'Tigerrejesalat', 'price' => 123, 'categories_id' => $category->id]);
+        $product = new Product(['name' => 'Tigerrejesalat', 'price' => 123, 'category_id' => $category->id]);
         $product->save();
 
         $this->assertEquals($category->toArray(), $product->parent_category()->first()->toArray());
@@ -28,7 +28,7 @@ class ModelTest extends TestCase
     {
         $ingredient = Ingredient::factory()->create();
         $product = Product::factory()->create();
-        ProductIngredient::factory()->create(['ingredients_id' => $ingredient->id, 'products_id' => $product->id]);
+        ProductIngredient::factory()->create(['ingredient_id' => $ingredient->id, 'product_id' => $product->id]);
 
         $result = $product->ingredients()->first()->toArray();
 

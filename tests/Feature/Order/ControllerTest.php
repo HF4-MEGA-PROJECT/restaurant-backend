@@ -57,13 +57,13 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('order.store'), [
-            'groups_id' => $group->id
+            'group_id' => $group->id
         ]);
 
         $orders = Order::all();
 
         $this->assertCount(1, $orders);
-        $this->assertEquals($group->id, $orders->first()->groups_id);
+        $this->assertEquals($group->id, $orders->first()->group_id);
 
         $response->assertExactJson($orders->first()->toArray());
     }
@@ -73,7 +73,7 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('order.store'), [
-            'groups_id' => 0
+            'group_id' => 0
         ]);
 
         $orders = Order::all();
@@ -103,13 +103,13 @@ class ControllerTest extends TestCase
 
         $response = $this->putJson(route('order.update', $order), [
             'id' => $order->id,
-            'groups_id' => $group->id
+            'group_id' => $group->id
         ]);
 
         $orders = Order::all();
 
         $this->assertCount(1, $orders);
-        $this->assertEquals($group->id, $orders->first()->groups_id);
+        $this->assertEquals($group->id, $orders->first()->group_id);
 
         $response->assertExactJson($orders->first()->toArray());
     }
@@ -121,13 +121,13 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->putJson(route('order.update', $order), [
-            'groups_id' => null
+            'group_id' => null
         ]);
 
         $orders = Order::all();
 
         $this->assertCount(1, $orders);
-        $this->assertEquals($order->groups_id, $orders->first()->groups_id);
+        $this->assertEquals($order->group_id, $orders->first()->group_id);
 
         $response->assertStatus(422);
     }
