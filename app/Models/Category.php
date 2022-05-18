@@ -14,10 +14,10 @@ class Category extends Model
     protected $fillable = ['name', 'category_id'];
 
     public function sub_categories(): HasMany {
-        return $this->hasMany(Category::class, 'category_id', 'id');
+        return $this->hasMany(__CLASS__);
     }
 
     public function parent_category(): BelongsTo {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->belongsTo(__CLASS__, 'category_id');
     }
 }

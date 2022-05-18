@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Ingredient extends Model
 {
@@ -12,7 +12,7 @@ class Ingredient extends Model
 
     protected $fillable = ['name', 'is_in_stock'];
 
-    public function products(): HasManyThrough {
-        return $this->hasManyThrough(Product::class, ProductIngredient::class, 'ingredient_id', 'id', null, 'product_id');
+    public function products(): BelongsToMany {
+        return $this->belongsToMany(Product::class, 'product_ingredients');
     }
 }

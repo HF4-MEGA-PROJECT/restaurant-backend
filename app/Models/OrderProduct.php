@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class OrderProduct extends Model
 {
@@ -14,12 +13,12 @@ class OrderProduct extends Model
 
     protected $fillable = ['price', 'product_id', 'order_id'];
 
-    public function product(): HasOne {
-        return $this->hasOne(Product::class, 'id', 'product_id');
+    public function product(): BelongsTo {
+        return $this->belongsTo(Product::class);
     }
 
     public function order(): BelongsTo {
-        return $this->belongsTo(Order::class, 'order_id', 'id');
+        return $this->belongsTo(Order::class);
     }
 
     public static function revenueThisMonth(): float {

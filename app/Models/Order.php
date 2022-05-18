@@ -14,10 +14,10 @@ class Order extends Model
     protected $fillable = ['group_id'];
 
     public function group(): BelongsTo {
-        return $this->belongsTo(Group::class, 'group_id', 'id');
+        return $this->belongsTo(Group::class);
     }
 
     public function products(): BelongsToMany {
-        return $this->belongsToMany(Product::class, 'order_products', 'order_id', 'product_id')->withPivot('price');
+        return $this->belongsToMany(Product::class, 'order_products')->withPivot('price');
     }
 }

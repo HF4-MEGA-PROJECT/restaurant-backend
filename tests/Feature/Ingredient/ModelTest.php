@@ -20,8 +20,7 @@ class ModelTest extends TestCase
 
         $result = $ingredient->products()->first()->toArray();
 
-        unset($result['deleted_at']);
-        unset($result['laravel_through_key']);
+        unset($result['deleted_at'], $result['laravel_through_key'], $result['pivot']);
 
         $this->assertEquals($product->toArray(), $result);
     }

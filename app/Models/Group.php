@@ -15,7 +15,7 @@ class Group extends Model
     protected $fillable = ['amount_of_people', 'number'];
 
     public function orders(): HasMany {
-        return $this->hasMany(Order::class, 'order_id', 'id');
+        return $this->hasMany(Order::class);
     }
 
     public static function totalGuests(): int {
