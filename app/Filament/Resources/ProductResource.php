@@ -26,6 +26,8 @@ class ProductResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('price'),
+                Forms\Components\TextInput::make('photo_path')
+                    ->maxLength(2048),
             ]);
     }
 
@@ -36,6 +38,7 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('category_id'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('price'),
+                Tables\Columns\TextColumn::make('photo_path'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')

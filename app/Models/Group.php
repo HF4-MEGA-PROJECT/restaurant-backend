@@ -32,7 +32,7 @@ class Group extends Model
 
     public static function currentTables(): array {
         return DB::table('groups', 'g')
-                    ->select(['g.id', 'g.amount_of_people', 'g.number', 'g.created_at', 'g.deleted_at', DB::RAW('SUM(order_products.price) AS order_total')])
+                    ->select(['g.id', 'g.amount_of_people', 'g.number', 'g.created_at', 'g.deleted_at', DB::RAW('SUM(order_products.price_at_purchase) AS order_total')])
                     ->leftJoin('orders', 'g.id', '=', 'orders.group_id')
                     ->leftJoin('order_products', 'order_products.order_id', '=', 'orders.id')
                     ->where('g.deleted_at', '=', null)
