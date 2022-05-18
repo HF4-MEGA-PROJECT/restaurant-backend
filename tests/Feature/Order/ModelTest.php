@@ -5,7 +5,7 @@ namespace Tests\Feature\Order;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
-use App\Models\Table;
+use App\Models\Group;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -13,16 +13,16 @@ class ModelTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_can_get_table()
+    public function test_can_get_group()
     {
-        $table = Table::factory()->create();
+        $group = Group::factory()->create();
 
-        $order = new Order(['tables_id' => $table->id]);
+        $order = new Order(['groups_id' => $group->id]);
         $order->save();
 
-        $table['deleted_at'] = null;
+        $group['deleted_at'] = null;
 
-        $this->assertEquals($table->toArray(), $order->table()->first()->toArray());
+        $this->assertEquals($group->toArray(), $order->group()->first()->toArray());
     }
 
     public function test_can_get_products()

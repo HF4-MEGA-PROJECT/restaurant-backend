@@ -25,7 +25,7 @@ class UpdateOrder extends FormRequest
     {
         return [
             'id' => 'required|integer|exists:orders,id',
-            'tables_id' => 'required|integer|exists:tables,id'
+            'groups_id' => 'required|integer|exists:groups,id'
         ];
     }
 }

@@ -22,7 +22,7 @@ Route::apiResource('category', \App\Http\Controllers\CategoryController::class);
 Route::apiResource('product', \App\Http\Controllers\ProductController::class);
 Route::apiResource('reservation', \App\Http\Controllers\ReservationController::class);
 Route::apiResource('setting', \App\Http\Controllers\SettingController::class);
-Route::apiResource('table', \App\Http\Controllers\TableController::class);
+Route::apiResource('group', \App\Http\Controllers\GroupController::class);
 Route::apiResource('order', \App\Http\Controllers\OrderController::class);
 Route::apiResource('order_product', \App\Http\Controllers\OrderProductController::class);
 Route::apiResource('ingredient', \App\Http\Controllers\IngredientController::class);

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTable extends FormRequest
+class StoreGroup extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class UpdateTable extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|integer|exists:tables,id',
             'amount_of_people' => 'required|integer|gt:0',
             'number' => 'required|integer'
         ];

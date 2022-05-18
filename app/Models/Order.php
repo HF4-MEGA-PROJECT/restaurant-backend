@@ -11,10 +11,10 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tables_id'];
+    protected $fillable = ['groups_id'];
 
-    public function table(): BelongsTo {
-        return $this->belongsTo(Table::class, 'tables_id', 'id');
+    public function group(): BelongsTo {
+        return $this->belongsTo(Group::class, 'groups_id', 'id');
     }
 
     public function products(): BelongsToMany {
