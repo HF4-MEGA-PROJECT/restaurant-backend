@@ -19,12 +19,12 @@ class Group extends Model
     }
 
     public static function totalGuests(): int {
-        $tables = self::query()->where('deleted_at', '=', null)->get();
+        $groups = self::query()->where('deleted_at', '=', null)->get();
 
         $total_guests = 0;
 
-        foreach ($tables as $table) {
-            $total_guests += $table->amount_of_people;
+        foreach ($groups as $group) {
+            $total_guests += $group->amount_of_people;
         }
 
         return $total_guests;
@@ -33,7 +33,7 @@ class Group extends Model
     public static function currentTables(): array {
         return DB::table('groups', 'g')
                     ->select(['g.id', 'g.amount_of_people', 'g.number', 'g.created_at', 'g.deleted_at', DB::RAW('SUM(order_products.price) AS order_total')])
-                    ->leftJoin('orders', 'g.id', '=', 'orders.tables_id')
+                    ->leftJoin('orders', 'g.id', '=', 'orders.groups_id')
                     ->leftJoin('order_products', 'order_products.orders_id', '=', 'orders.id')
                     ->where('g.deleted_at', '=', null)
                     ->groupBy(['g.id', 'g.amount_of_people', 'g.number', 'g.created_at', 'g.deleted_at'])
