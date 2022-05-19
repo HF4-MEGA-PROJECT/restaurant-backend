@@ -12,8 +12,9 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(CategorySeeder $categorySeeder, ProductSeeder $productSeeder)
     {
-        // \App\Models\User::factory(10)->create();
+        $categorySeeder->run();
+        $productSeeder->run();
     }
 }
