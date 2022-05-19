@@ -11,13 +11,13 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['groups_id'];
+    protected $fillable = ['group_id'];
 
     public function group(): BelongsTo {
-        return $this->belongsTo(Group::class, 'groups_id', 'id');
+        return $this->belongsTo(Group::class);
     }
 
     public function products(): BelongsToMany {
-        return $this->belongsToMany(Product::class, 'order_products', 'orders_id', 'products_id')->withPivot('price');
+        return $this->belongsToMany(Product::class, 'order_products')->withPivot('price_at_purchase');
     }
 }

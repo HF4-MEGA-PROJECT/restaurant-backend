@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('groups_id')->nullable(false);
+            $table->unsignedBigInteger('group_id')->nullable(false);
             $table->timestamps();
 
-            $table->foreign('groups_id')->references('id')->on('groups')->onDelete('cascade');
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
         });
     }
 

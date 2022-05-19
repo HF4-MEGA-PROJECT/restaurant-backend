@@ -31,8 +31,8 @@ class ProductIngredientController extends Controller
         $validated = $request->validated();
 
         $productIngredient = new ProductIngredient([
-            'products_id' => $validated['products_id'],
-            'ingredients_id' => $validated['ingredients_id']
+            'product_id' => $validated['product_id'],
+            'ingredient_id' => $validated['ingredient_id']
         ]);
 
         $productIngredient->save();
@@ -63,8 +63,8 @@ class ProductIngredientController extends Controller
         $validated = $request->validated();
 
         $productIngredient->update([
-            'products_id' => $validated['products_id'],
-            'ingredients_id' => $validated['ingredients_id']
+            'product_id' => $validated['product_id'],
+            'ingredient_id' => $validated['ingredient_id']
         ]);
 
         return response()->json($productIngredient);

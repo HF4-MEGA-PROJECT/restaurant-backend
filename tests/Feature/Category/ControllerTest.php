@@ -55,14 +55,14 @@ class ControllerTest extends TestCase
 
         $response = $this->postJson(route('category.store'), [
             'name' => 'Hovedret',
-            'categories_id' => null
+            'category_id' => null
         ]);
 
         $categories = Category::all();
 
         $this->assertCount(1, $categories);
         $this->assertEquals('Hovedret', $categories->first()->name);
-        $this->assertEquals(null, $categories->first()->categories_id);
+        $this->assertEquals(null, $categories->first()->category_id);
 
         $response->assertExactJson($categories->first()->toArray());
     }
@@ -73,7 +73,7 @@ class ControllerTest extends TestCase
 
         $response = $this->postJson(route('category.store'), [
             'name' => 'Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string',
-            'categories_id' => null
+            'category_id' => null
         ]);
 
         $categories = Category::all();
@@ -89,7 +89,7 @@ class ControllerTest extends TestCase
 
         $response = $this->postJson(route('category.store'), [
             'name' => 'Hovedret',
-            'categories_id' => 1
+            'category_id' => 1
         ]);
 
         $categories = Category::all();
@@ -119,14 +119,14 @@ class ControllerTest extends TestCase
         $response = $this->putJson(route('category.update', $category), [
             'id' => $category->id,
             'name' => 'Hovedret',
-            'categories_id' => null
+            'category_id' => null
         ]);
 
         $categories = Category::all();
 
         $this->assertCount(1, $categories);
         $this->assertEquals('Hovedret', $categories->first()->name);
-        $this->assertEquals(null, $categories->first()->categories_id);
+        $this->assertEquals(null, $categories->first()->category_id);
 
         $response->assertExactJson($categories->first()->toArray());
     }
@@ -140,14 +140,14 @@ class ControllerTest extends TestCase
         $response = $this->putJson(route('category.update', $category), [
             'id' => $category->id,
             'name' => 'Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string Alt for lang string',
-            'categories_id' => null
+            'category_id' => null
         ]);
 
         $categories = Category::all();
 
         $this->assertCount(1, $categories);
         $this->assertEquals($category->name, $categories->first()->name);
-        $this->assertEquals($category->categories_id, $categories->first()->categories_id);
+        $this->assertEquals($category->category_id, $categories->first()->category_id);
 
         $response->assertStatus(422);
     }
@@ -161,14 +161,14 @@ class ControllerTest extends TestCase
         $response = $this->putJson(route('category.update', $category), [
             'id' => $category->id,
             'name' => 'Hovedret',
-            'categories_id' => 0
+            'category_id' => 0
         ]);
 
         $categories = Category::all();
 
         $this->assertCount(1, $categories);
         $this->assertEquals($category->name, $categories->first()->name);
-        $this->assertEquals($category->categories_id, $categories->first()->categories_id);
+        $this->assertEquals($category->category_id, $categories->first()->category_id);
 
         $response->assertStatus(422);
     }

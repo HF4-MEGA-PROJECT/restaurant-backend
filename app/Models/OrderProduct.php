@@ -6,20 +6,19 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class OrderProduct extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['price', 'products_id', 'orders_id'];
+    protected $fillable = ['price_at_purchase', 'product_id', 'order_id'];
 
-    public function product(): HasOne {
-        return $this->hasOne(Product::class, 'id', 'products_id');
+    public function product(): BelongsTo {
+        return $this->belongsTo(Product::class);
     }
 
     public function order(): BelongsTo {
-        return $this->belongsTo(Order::class, 'orders_id', 'id');
+        return $this->belongsTo(Order::class);
     }
 
     public static function revenueThisMonth(): float {

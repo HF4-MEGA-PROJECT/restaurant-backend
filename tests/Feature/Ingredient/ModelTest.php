@@ -16,12 +16,11 @@ class ModelTest extends TestCase
     {
         $ingredient = Ingredient::factory()->create();
         $product = Product::factory()->create();
-        ProductIngredient::factory()->create(['ingredients_id' => $ingredient->id, 'products_id' => $product->id]);
+        ProductIngredient::factory()->create(['ingredient_id' => $ingredient->id, 'product_id' => $product->id]);
 
         $result = $ingredient->products()->first()->toArray();
 
-        unset($result['deleted_at']);
-        unset($result['laravel_through_key']);
+        unset($result['deleted_at'], $result['laravel_through_key'], $result['pivot']);
 
         $this->assertEquals($product->toArray(), $result);
     }

@@ -22,7 +22,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->text(255),
-            'categories_id' => null
+            'category_id' => null
         ];
     }
 }

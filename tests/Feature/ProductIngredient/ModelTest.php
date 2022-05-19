@@ -15,7 +15,7 @@ class ModelTest extends TestCase
     public function test_can_get_product()
     {
         $product = Product::factory()->create();
-        $productIngredient = ProductIngredient::factory()->create(['products_id' => $product->id]);
+        $productIngredient = ProductIngredient::factory()->create(['product_id' => $product->id]);
 
         $result = $productIngredient->product()->first()->toArray();
 
@@ -27,7 +27,7 @@ class ModelTest extends TestCase
     public function test_can_get_ingredient()
     {
         $ingredient = Ingredient::factory()->create();
-        $productIngredient = ProductIngredient::factory()->create(['ingredients_id' => $ingredient->id]);
+        $productIngredient = ProductIngredient::factory()->create(['ingredient_id' => $ingredient->id]);
 
         $result = $productIngredient->ingredient()->first()->toArray();
 

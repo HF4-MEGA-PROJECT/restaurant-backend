@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ProductIngredient extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['products_id', 'ingredients_id'];
+    protected $fillable = ['product_id', 'ingredient_id'];
 
-    public function ingredient(): HasOne {
-        return $this->hasOne(Ingredient::class, 'id', 'ingredients_id');
+    public function ingredient(): BelongsTo {
+        return $this->belongsTo(Ingredient::class);
     }
 
     public function product(): BelongsTo {
-        return $this->belongsTo(Product::class, 'products_id', 'id');
+        return $this->belongsTo(Product::class);
     }
 }

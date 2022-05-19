@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('product_ingredients', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('products_id');
-            $table->unsignedBigInteger('ingredients_id');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('ingredient_id');
             $table->timestamps();
 
-            $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('ingredients_id')->references('id')->on('ingredients')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');
         });
     }
 

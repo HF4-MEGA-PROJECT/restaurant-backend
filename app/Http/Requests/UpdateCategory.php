@@ -26,7 +26,7 @@ class UpdateCategory extends FormRequest
         return [
             'id' => 'required|integer|exists:categories,id',
             'name' => 'required|string|max:255',
-            'categories_id' => 'nullable|integer|exists:categories,id'
+            'category_id' => 'nullable|integer|exists:categories,id'
         ];
     }
 }

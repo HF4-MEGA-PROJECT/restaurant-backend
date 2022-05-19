@@ -17,11 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable(false);
             $table->double('price')->nullable(true);
-            $table->unsignedBigInteger('categories_id')->nullable(true);
+            $table->unsignedBigInteger('category_id')->nullable(true);
+            $table->string('photo_path', 2048)->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

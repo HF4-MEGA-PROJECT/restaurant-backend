@@ -60,17 +60,17 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('order_product.store'), [
-            'price' => 123,
-            'products_id' => $product->id,
-            'orders_id' => $order->id
+            'price_at_purchase' => 123,
+            'product_id' => $product->id,
+            'order_id' => $order->id
         ]);
 
         $orderProducts = OrderProduct::all();
 
         $this->assertCount(1, $orderProducts);
-        $this->assertEquals(123, $orderProducts->first()->price);
-        $this->assertEquals($product->id, $orderProducts->first()->products_id);
-        $this->assertEquals($order->id, $orderProducts->first()->orders_id);
+        $this->assertEquals(123, $orderProducts->first()->price_at_purchase);
+        $this->assertEquals($product->id, $orderProducts->first()->product_id);
+        $this->assertEquals($order->id, $orderProducts->first()->order_id);
 
         $response->assertExactJson($orderProducts->first()->toArray());
     }
@@ -83,9 +83,9 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('order_product.store'), [
-            'price' => 'ikke et tal',
-            'products_id' => $product->id,
-            'orders_id' => $order->id
+            'price_at_purchase' => 'ikke et tal',
+            'product_id' => $product->id,
+            'order_id' => $order->id
         ]);
 
         $orderProducts = OrderProduct::all();
@@ -102,9 +102,9 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('order_product.store'), [
-            'price' => 123,
-            'products_id' => 0,
-            'orders_id' => $order->id
+            'price_at_purchase' => 123,
+            'product_id' => 0,
+            'order_id' => $order->id
         ]);
 
         $orderProducts = OrderProduct::all();
@@ -121,9 +121,9 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('order_product.store'), [
-            'price' => 123,
-            'products_id' => $product->id,
-            'orders_id' => 0
+            'price_at_purchase' => 123,
+            'product_id' => $product->id,
+            'order_id' => 0
         ]);
 
         $orderProducts = OrderProduct::all();
@@ -154,17 +154,17 @@ class ControllerTest extends TestCase
 
         $response = $this->putJson(route('order_product.update', $orderProduct), [
             'id' => $orderProduct->id,
-            'price' => 123,
-            'products_id' => $product->id,
-            'orders_id' => $order->id
+            'price_at_purchase' => 123,
+            'product_id' => $product->id,
+            'order_id' => $order->id
         ]);
 
         $orderProducts = OrderProduct::all();
 
         $this->assertCount(1, $orderProducts);
-        $this->assertEquals(123, $orderProducts->first()->price);
-        $this->assertEquals($product->id, $orderProducts->first()->products_id);
-        $this->assertEquals($order->id, $orderProducts->first()->orders_id);
+        $this->assertEquals(123, $orderProducts->first()->price_at_purchase);
+        $this->assertEquals($product->id, $orderProducts->first()->product_id);
+        $this->assertEquals($order->id, $orderProducts->first()->order_id);
 
         $response->assertExactJson($orderProducts->first()->toArray());
     }
@@ -179,17 +179,17 @@ class ControllerTest extends TestCase
 
         $response = $this->putJson(route('order_product.update', $orderProduct), [
             'id' => $orderProduct->id,
-            'price' => 'ikke et tal',
-            'products_id' => $product->id,
-            'orders_id' => $order->id
+            'price_at_purchase' => 'ikke et tal',
+            'product_id' => $product->id,
+            'order_id' => $order->id
         ]);
 
         $orderProducts = OrderProduct::all();
 
         $this->assertCount(1, $orderProducts);
-        $this->assertEquals($orderProduct->price, $orderProducts->first()->price);
-        $this->assertEquals($orderProduct->products_id, $orderProducts->first()->products_id);
-        $this->assertEquals($orderProduct->orders_id, $orderProducts->first()->orders_id);
+        $this->assertEquals($orderProduct->price_at_purchase, $orderProducts->first()->price_at_purchase);
+        $this->assertEquals($orderProduct->product_id, $orderProducts->first()->product_id);
+        $this->assertEquals($orderProduct->order_id, $orderProducts->first()->order_id);
 
         $response->assertStatus(422);
     }
@@ -203,17 +203,17 @@ class ControllerTest extends TestCase
 
         $response = $this->putJson(route('order_product.update', $orderProduct), [
             'id' => $orderProduct->id,
-            'price' => 123,
-            'products_id' => 0,
-            'orders_id' => $order->id
+            'price_at_purchase' => 123,
+            'product_id' => 0,
+            'order_id' => $order->id
         ]);
 
         $orderProducts = OrderProduct::all();
 
         $this->assertCount(1, $orderProducts);
-        $this->assertEquals($orderProduct->price, $orderProducts->first()->price);
-        $this->assertEquals($orderProduct->products_id, $orderProducts->first()->products_id);
-        $this->assertEquals($orderProduct->orders_id, $orderProducts->first()->orders_id);
+        $this->assertEquals($orderProduct->price_at_purchase, $orderProducts->first()->price_at_purchase);
+        $this->assertEquals($orderProduct->product_id, $orderProducts->first()->product_id);
+        $this->assertEquals($orderProduct->order_id, $orderProducts->first()->order_id);
 
         $response->assertStatus(422);
     }
@@ -227,17 +227,17 @@ class ControllerTest extends TestCase
 
         $response = $this->putJson(route('order_product.update', $orderProduct), [
             'id' => $orderProduct->id,
-            'price' => 123,
-            'products_id' => $product->id,
-            'orders_id' => 0
+            'price_at_purchase' => 123,
+            'product_id' => $product->id,
+            'order_id' => 0
         ]);
 
         $orderProducts = OrderProduct::all();
 
         $this->assertCount(1, $orderProducts);
-        $this->assertEquals($orderProduct->price, $orderProducts->first()->price);
-        $this->assertEquals($orderProduct->products_id, $orderProducts->first()->products_id);
-        $this->assertEquals($orderProduct->orders_id, $orderProducts->first()->orders_id);
+        $this->assertEquals($orderProduct->price_at_purchase, $orderProducts->first()->price_at_purchase);
+        $this->assertEquals($orderProduct->product_id, $orderProducts->first()->product_id);
+        $this->assertEquals($orderProduct->order_id, $orderProducts->first()->order_id);
 
         $response->assertStatus(422);
     }

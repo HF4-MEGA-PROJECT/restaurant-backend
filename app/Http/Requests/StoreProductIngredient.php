@@ -24,8 +24,8 @@ class StoreProductIngredient extends FormRequest
     public function rules(): array
     {
         return [
-            'products_id' => 'required|integer|exists:products,id',
-            'ingredients_id' => 'required|integer|exists:ingredients,id'
+            'product_id' => 'required|integer|exists:products,id',
+            'ingredient_id' => 'required|integer|exists:ingredients,id'
         ];
     }
 }
