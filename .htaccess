@@ -1,0 +1,2 @@
+# Fix HTTP2 Bug on OVH
+RewriteRule ^(.*)$ $1 [NS,E=no-gzip:1,E=dont-vary:1]
