@@ -12,9 +12,11 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run(CategorySeeder $categorySeeder, ProductSeeder $productSeeder)
+    public function run(CategorySeeder $categorySeeder, ProductSeeder $productSeeder, ReservationSeeder $reservationSeeder, GroupSeeder $groupSeeder)
     {
         $categorySeeder->run();
         $productSeeder->run();
+        $reservationSeeder->run();
+        $groupSeeder->run();
     }
 }

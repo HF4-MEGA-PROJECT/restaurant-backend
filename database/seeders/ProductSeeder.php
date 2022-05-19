@@ -41,7 +41,7 @@ class ProductSeeder extends Seeder
             'description' => 'Stegte tigerrejer med kålsalat, avocado, nudler, agurk, gulerod, edamame bønner, mynte, cashewnødder og gomadressing.',
             'category_id' => 5,
             'price' => 139,
-            'photo_path' => 'https://www.valdemarsro.dk/wp-content/2017/03/ceasarsalat.jpg',
+            'photo_path' => 'https://d17kbh9lfpylmy.cloudfront.net/base_recipes/pictures/000/000/613/original/shutterstock_348192446.png?1640291079',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
@@ -110,7 +110,7 @@ class ProductSeeder extends Seeder
             'name' => 'Spicy Burger',
             'description' => 'Bøf af hakket oksekød i briochebolle med salat, tomat, jalapeños, syltede rødløg og chilimayonnaise. Serveres med pommes frites og chilimayonnaise.',
             'category_id' => 4,
-            'price' => 149 ,
+            'price' => 149,
             'photo_path' => 'https://www.sargento.com/assets/Uploads/Recipe/Image/smashburger__FillWzExNzAsNTgzXQ.jpg',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
@@ -120,18 +120,138 @@ class ProductSeeder extends Seeder
             'name' => 'Crispy Chicken Burger',
             'description' => 'Sprød kylling i briochebolle med salat, tomat, syltede rødløg, chilimayonnaise, jalapeños og guacamole. Serveres med pommes frites og mayonnaise.',
             'category_id' => 4,
-            'price' => 139 ,
+            'price' => 139,
             'photo_path' => 'https://shepskitchen.ie/wp-content/uploads/2021/03/Chicken-burger-1.jpg',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('products')->insert([
-            'name' => 'Crispy Chicken Burger',
-            'description' => 'Sprød kylling i briochebolle med salat, tomat, syltede rødløg, chilimayonnaise, jalapeños og guacamole. Serveres med pommes frites og mayonnaise.',
+            'name' => 'Tomatsuppe',
+            'description' => 'Tomatsuppe med creme fraiche og frisk basilikum. Serveres med brød og smør.',
+            'category_id' => 1,
+            'price' => 99,
+            'photo_path' => 'https://cdn-rdb.arla.com/Files/arla-dk/4247719622/bd03bdc2-4525-4b40-a1ce-af1063af44ae.jpg?crop=(0,296,0,-656)&w=1200&h=630&scale=both&format=jpg&quality=80&ak=6826258c&hm=6f4be496',
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Pasta med Kylling',
+            'description' => 'Pasta med kylling, blandede svampe og parmesan.',
+            'category_id' => 1,
+            'price' => 169,
+            'photo_path' => 'https://usercontent.one/wp/www.majspassion.dk/wp-content/uploads/2020/09/pastaret-med-kylling-og-svampe.jpg',
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Pasta med Oksemørbrad',
+            'description' => 'Pasta med grilllet oksemørbrad, blandede svampe og parmesan.',
             'category_id' => 4,
-            'price' => 139 ,
-            'photo_path' => 'https://shepskitchen.ie/wp-content/uploads/2021/03/Chicken-burger-1.jpg',
+            'price' => 179,
+            'photo_path' => 'https://opskrifteradmin.coop.dk/media/recipeimages/11676/23095/1920/img_0106.jpg?width=850&upscale=false&format=jpg&quality=90',
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Pasta med Tigerrejer',
+            'description' => 'Pasta med tigerrejer, tomatsauce, parmesan og basilikum.',
+            'category_id' => 4,
+            'price' => 179,
+            'photo_path' => 'https://madenimitliv.dk/wp-content/uploads/2018/03/DSC_0003-1.jpg',
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Aperol Spritz',
+            'description' => 'Aperol, prosecco, danskvand, appelsinskive. Klassiskeren til en varm sommerdag. Eller bare fordi...',
+            'category_id' => 7,
+            'price' => 85,
+            'photo_path' => null,
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Espresso Martini',
+            'description' => 'Vodka/tequila, kahlua, espresso, vanilje. En klassiker med et twist, vælg mellem vodka eller tequila.',
+            'category_id' => 7,
+            'price' => 85,
+            'photo_path' => null,
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Dark n stormy',
+            'description' => 'Mørk rom, gingerbeer, friskpresset limesat og gomme sirup.',
+            'category_id' => 7,
+            'price' => 85,
+            'photo_path' => null,
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Mojito',
+            'description' => 'Rom, mynte, rørsukker, friskpresset limesaft, limeskiver.',
+            'category_id' => 7,
+            'price' => 85,
+            'photo_path' => null,
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Gin Tonic',
+            'description' => 'Gin, tonic, citronskive.',
+            'category_id' => 7,
+            'price' => 85,
+            'photo_path' => null,
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Moscow Mule',
+            'description' => 'Vodka, friskpresset limesaft, gingerbeer.',
+            'category_id' => 7,
+            'price' => 85,
+            'photo_path' => null,
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Strawberry Daquiri',
+            'description' => 'Lys rom, jordbær, friskpresset lime, gomme sirup.',
+            'category_id' => 7,
+            'price' => 85,
+            'photo_path' => null,
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Gin Hass',
+            'description' => 'Gin, mangojuice, frisk lime og lemon.',
+            'category_id' => 7,
+            'price' => 85,
+            'photo_path' => null,
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Raspberry Love',
+            'description' => 'Vodka, cointreau, hindbær, frisk lime og honning.',
+            'category_id' => 7,
+            'price' => 85,
+            'photo_path' => null,
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);

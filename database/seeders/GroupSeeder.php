@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Order;
+use App\Models\OrderProduct;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +16,12 @@ class GroupSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Order::factory()
+            ->count(15)
+            ->create();
+
+        OrderProduct::factory()
+            ->count(20)
+            ->create();
     }
 }
