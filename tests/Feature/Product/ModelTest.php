@@ -18,7 +18,7 @@ class ModelTest extends TestCase
         $category = new Category(['name' => 'Hovedretter', 'category_id' => null]);
         $category->save();
 
-        $product = new Product(['name' => 'Tigerrejesalat', 'price' => 123, 'category_id' => $category->id]);
+        $product = new Product(['name' => 'Tigerrejesalat', 'description' => 'En anretning med rejer, tiger, salat.', 'price' => 123, 'category_id' => $category->id]);
         $product->save();
 
         $this->assertEquals($category->toArray(), $product->parent_category()->first()->toArray());
