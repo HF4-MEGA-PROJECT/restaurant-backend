@@ -20,7 +20,7 @@ class ReservationFactory extends Factory
             'name' => $this->faker->firstName() . ' ' . $this->faker->lastName(),
             'email' => $this->faker->email(),
             'phone' => $this->faker->phoneNumber(),
-            'time' => $this->faker->dateTimeBetween('now', '+2 week'),
+            'time' => $this->faker->dateTimeBetween('now', '+2 week')->format('Y-m-d H:i:s'),
             'amount_of_people' => $this->faker->numberBetween(1, 16)
         ];
     }

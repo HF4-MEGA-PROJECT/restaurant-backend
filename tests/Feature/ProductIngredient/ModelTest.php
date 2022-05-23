@@ -14,6 +14,7 @@ class ModelTest extends TestCase
 
     public function test_can_get_product()
     {
+        Ingredient::factory()->create();
         $product = Product::factory()->create();
         $productIngredient = ProductIngredient::factory()->create(['product_id' => $product->id]);
 
@@ -26,6 +27,7 @@ class ModelTest extends TestCase
 
     public function test_can_get_ingredient()
     {
+        Product::factory()->create();
         $ingredient = Ingredient::factory()->create();
         $productIngredient = ProductIngredient::factory()->create(['ingredient_id' => $ingredient->id]);
 
