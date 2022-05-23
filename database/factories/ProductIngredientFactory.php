@@ -18,9 +18,12 @@ class ProductIngredientFactory extends Factory
      */
     public function definition()
     {
+        $productIds = Product::pluck('id')->toArray();
+        $ingredientIds = Ingredient::pluck('id')->toArray();
+
         return [
-            'product_id' => Product::factory()->create()->id,
-            'ingredient_id' => Ingredient::factory()->create()->id
+            'product_id' => $productIds[array_rand($productIds)],
+            'ingredient_id' => $ingredientIds[array_rand($ingredientIds)],
         ];
     }
 }
