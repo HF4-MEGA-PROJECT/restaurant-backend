@@ -16,6 +16,8 @@ class ControllerTest extends TestCase
 
     public function test_order_products_can_be_fetched_when_one_order_product_exist()
     {
+        Order::factory()->create();
+        Product::factory()->create();
         OrderProduct::factory()->create();
 
         $this->actingAs($user = User::factory()->create());
@@ -29,6 +31,10 @@ class ControllerTest extends TestCase
 
     public function test_order_products_can_be_fetched_when_some_order_products_exist()
     {
+        Order::factory()->create();
+        Product::factory()->create();
+        Order::factory()->create();
+        Product::factory()->create();
         OrderProduct::factory()->create();
         OrderProduct::factory()->create();
 
@@ -135,6 +141,8 @@ class ControllerTest extends TestCase
 
     public function test_order_product_can_be_fetched()
     {
+        Order::factory()->create();
+        Product::factory()->create();
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->getJson(route('order_product.show', ['order_product' => OrderProduct::factory()->create()]));
@@ -196,6 +204,7 @@ class ControllerTest extends TestCase
 
     public function test_order_product_can_not_be_updated_when_product_does_not_exist()
     {
+        Product::factory()->create();
         $order = Order::factory()->create();
         $orderProduct = OrderProduct::factory()->create();
 
@@ -220,6 +229,7 @@ class ControllerTest extends TestCase
 
     public function test_order_product_can_not_be_updated_when_order_does_not_exist()
     {
+        Order::factory()->create();
         $product = Product::factory()->create();
         $orderProduct = OrderProduct::factory()->create();
 
@@ -244,6 +254,8 @@ class ControllerTest extends TestCase
 
     public function test_order_product_can_be_deleted()
     {
+        Order::factory()->create();
+        Product::factory()->create();
         $orderProduct = OrderProduct::factory()->create();
 
         $this->actingAs($user = User::factory()->create());

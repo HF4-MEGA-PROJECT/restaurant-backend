@@ -15,6 +15,8 @@ class ControllerTest extends TestCase
 
     public function test_product_ingredients_can_be_fetched_when_one_product_ingredient_exist()
     {
+        Ingredient::factory()->create();
+        Product::factory()->create();
         ProductIngredient::factory()->create();
 
         $this->actingAs($user = User::factory()->create());
@@ -28,6 +30,10 @@ class ControllerTest extends TestCase
 
     public function test_product_ingredients_can_be_fetched_when_some_product_ingredients_exist()
     {
+        Ingredient::factory()->create();
+        Product::factory()->create();
+        Ingredient::factory()->create();
+        Product::factory()->create();
         ProductIngredient::factory()->create();
         ProductIngredient::factory()->create();
 
@@ -110,6 +116,8 @@ class ControllerTest extends TestCase
 
     public function test_product_ingredient_can_be_fetched()
     {
+        Ingredient::factory()->create();
+        Product::factory()->create();
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->getJson(route('product_ingredient.show', ['product_ingredient' => ProductIngredient::factory()->create()]));
@@ -144,6 +152,7 @@ class ControllerTest extends TestCase
 
     public function test_product_ingredient_can_not_be_updated_when_product_does_not_exist()
     {
+        Product::factory()->create();
         $ingredient = Ingredient::factory()->create();
         $productIngredient = ProductIngredient::factory()->create();
 
@@ -167,6 +176,7 @@ class ControllerTest extends TestCase
 
     public function test_product_ingredient_can_not_be_updated_when_ingredient_does_not_exist()
     {
+        Ingredient::factory()->create();
         $product = Product::factory()->create();
         $productIngredient = ProductIngredient::factory()->create();
 
@@ -191,6 +201,8 @@ class ControllerTest extends TestCase
 
     public function test_product_ingredient_can_be_deleted()
     {
+        Ingredient::factory()->create();
+        Product::factory()->create();
         $productIngredient = ProductIngredient::factory()->create();
 
         $this->actingAs($user = User::factory()->create());

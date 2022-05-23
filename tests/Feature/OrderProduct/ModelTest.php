@@ -14,6 +14,7 @@ class ModelTest extends TestCase
 
     public function test_can_get_product()
     {
+        Order::factory()->create();
         $product = Product::factory()->create();
         $orderProduct = OrderProduct::factory()->create(['product_id' => $product->id]);
 
@@ -26,6 +27,7 @@ class ModelTest extends TestCase
 
     public function test_can_get_order()
     {
+        Product::factory()->create();
         $order = Order::factory()->create();
         $orderProduct = OrderProduct::factory()->create(['order_id' => $order->id]);
 

@@ -12,8 +12,12 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(CategorySeeder $categorySeeder, ProductSeeder $productSeeder, ReservationSeeder $reservationSeeder, GroupSeeder $groupSeeder, IngredientSeeder $ingredientSeeder)
     {
-        // \App\Models\User::factory(10)->create();
+        $categorySeeder->run();
+        $productSeeder->run();
+        $reservationSeeder->run();
+        $groupSeeder->run();
+        $ingredientSeeder->run();
     }
 }

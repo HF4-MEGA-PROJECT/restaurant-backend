@@ -18,10 +18,13 @@ class OrderProductFactory extends Factory
      */
     public function definition(): array
     {
+        $productIds = Product::pluck('id')->toArray();
+        $orderIds = Order::pluck('id')->toArray();
+
         return [
-            'price_at_purchase' => $this->faker->numberBetween(),
-            'product_id' => Product::factory()->create()->id,
-            'order_id' => Order::factory()->create()->id,
+            'price_at_purchase' => $this->faker->numberBetween(0, 150),
+            'product_id' => $productIds[array_rand($productIds)],
+            'order_id' => $orderIds[array_rand($orderIds)],
         ];
     }
 }
