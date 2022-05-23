@@ -26,6 +26,7 @@ class UpdateProduct extends FormRequest
         return [
             'id' => 'required|integer|exists:products,id',
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'price' => 'nullable|numeric',
             'category_id' => 'nullable|integer|exists:categories,id',
             'photo_path' => 'nullable|string|max:2048',

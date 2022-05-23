@@ -25,6 +25,7 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Textarea::make('description'),
                 Forms\Components\TextInput::make('price'),
                 Forms\Components\TextInput::make('photo_path')
                     ->maxLength(2048),

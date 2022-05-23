@@ -32,6 +32,7 @@ class ProductController extends Controller
 
         $product = new Product([
             'name' => $validated['name'],
+            'description' => $validated['description'],
             'price' => $validated['price'],
             'category_id' => $validated['category_id'],
             'photo_path' => $validated['photo_path'],
@@ -66,6 +67,7 @@ class ProductController extends Controller
 
         $product->update([
             'name' => $validated['name'],
+            'description' => $validated['description'],
             'price' => $validated['price'],
             'category_id' => $validated['category_id'],
             'photo_path' => $validated['photo_path'],
