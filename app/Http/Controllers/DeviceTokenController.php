@@ -14,7 +14,7 @@ class DeviceTokenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    public function index(Request $request)
+    public function index(Request $request): \Inertia\Response
     {
         return Jetstream::inertia()->render($request, 'Device/Index', [
             'tokens' => $request->user()->tokens->map(function ($token) {
@@ -33,7 +33,7 @@ class DeviceTokenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -53,10 +53,10 @@ class DeviceTokenController extends Controller
      * Update the given API token's permissions.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  string  $tokenId
+     * @param string $tokenId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $tokenId)
+    public function update(Request $request, string $tokenId): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'permissions' => 'array',
@@ -76,10 +76,10 @@ class DeviceTokenController extends Controller
      * Delete the given API token.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  string  $tokenId
+     * @param string $tokenId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request, $tokenId)
+    public function destroy(Request $request, string $tokenId): \Illuminate\Http\RedirectResponse
     {
         $request->user()->tokens()->where('id', $tokenId)->first()->delete();
 

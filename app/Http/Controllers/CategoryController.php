@@ -15,7 +15,7 @@ class CategoryController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         return response()->json(Category::all());
     }
@@ -26,7 +26,7 @@ class CategoryController extends Controller
      * @param StoreCategory $request
      * @return JsonResponse
      */
-    public function store(StoreCategory $request)
+    public function store(StoreCategory $request): JsonResponse
     {
         $validated = $request->validated();
 
@@ -46,7 +46,7 @@ class CategoryController extends Controller
      * @param Category $category
      * @return JsonResponse
      */
-    public function show(Category $category)
+    public function show(Category $category): JsonResponse
     {
         return response()->json($category);
     }
@@ -58,7 +58,7 @@ class CategoryController extends Controller
      * @param Category $category
      * @return JsonResponse
      */
-    public function update(UpdateCategory $request, Category $category)
+    public function update(UpdateCategory $request, Category $category): JsonResponse
     {
         $validated = $request->validated();
 
@@ -76,7 +76,7 @@ class CategoryController extends Controller
      * @param Category $category
      * @return Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category): Response
     {
         $category->delete();
 

@@ -15,7 +15,7 @@ class GroupController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         return response()->json(Group::all());
     }
@@ -26,7 +26,7 @@ class GroupController extends Controller
      * @param StoreGroup $request
      * @return JsonResponse
      */
-    public function store(StoreGroup $request)
+    public function store(StoreGroup $request): JsonResponse
     {
         $validated = $request->validated();
 
@@ -46,7 +46,7 @@ class GroupController extends Controller
      * @param Group $group
      * @return JsonResponse
      */
-    public function show(Group $group)
+    public function show(Group $group): JsonResponse
     {
         return response()->json($group);
     }
@@ -58,7 +58,7 @@ class GroupController extends Controller
      * @param Group $group
      * @return JsonResponse
      */
-    public function update(UpdateGroup $request, Group $group)
+    public function update(UpdateGroup $request, Group $group): JsonResponse
     {
         $validated = $request->validated();
 
@@ -76,7 +76,7 @@ class GroupController extends Controller
      * @param Group $group
      * @return Response
      */
-    public function destroy(Group $group)
+    public function destroy(Group $group): Response
     {
         $group->delete();
 
