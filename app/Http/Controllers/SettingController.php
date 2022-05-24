@@ -15,7 +15,7 @@ class SettingController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         return response()->json(Setting::all());
     }
@@ -26,7 +26,7 @@ class SettingController extends Controller
      * @param StoreSetting $request
      * @return JsonResponse
      */
-    public function store(StoreSetting $request)
+    public function store(StoreSetting $request): JsonResponse
     {
         $validated = $request->validated();
 
@@ -46,7 +46,7 @@ class SettingController extends Controller
      * @param Setting $setting
      * @return JsonResponse
      */
-    public function show(Setting $setting)
+    public function show(Setting $setting): JsonResponse
     {
         return response()->json($setting);
     }
@@ -58,7 +58,7 @@ class SettingController extends Controller
      * @param Setting $setting
      * @return JsonResponse
      */
-    public function update(UpdateSetting $request, Setting $setting)
+    public function update(UpdateSetting $request, Setting $setting): JsonResponse
     {
         $validated = $request->validated();
 
@@ -76,7 +76,7 @@ class SettingController extends Controller
      * @param Setting $setting
      * @return Response
      */
-    public function destroy(Setting $setting)
+    public function destroy(Setting $setting): Response
     {
         $setting->delete();
 

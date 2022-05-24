@@ -15,7 +15,7 @@ class ProductIngredientController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         return response()->json(ProductIngredient::all());
     }
@@ -26,7 +26,7 @@ class ProductIngredientController extends Controller
      * @param StoreProductIngredient $request
      * @return JsonResponse
      */
-    public function store(StoreProductIngredient $request)
+    public function store(StoreProductIngredient $request): JsonResponse
     {
         $validated = $request->validated();
 
@@ -46,7 +46,7 @@ class ProductIngredientController extends Controller
      * @param ProductIngredient $productIngredient
      * @return JsonResponse
      */
-    public function show(ProductIngredient $productIngredient)
+    public function show(ProductIngredient $productIngredient): JsonResponse
     {
         return response()->json($productIngredient);
     }
@@ -58,7 +58,7 @@ class ProductIngredientController extends Controller
      * @param ProductIngredient $productIngredient
      * @return JsonResponse
      */
-    public function update(UpdateProductIngredient $request, ProductIngredient $productIngredient)
+    public function update(UpdateProductIngredient $request, ProductIngredient $productIngredient): JsonResponse
     {
         $validated = $request->validated();
 
@@ -76,7 +76,7 @@ class ProductIngredientController extends Controller
      * @param ProductIngredient $productIngredient
      * @return Response
      */
-    public function destroy(ProductIngredient $productIngredient)
+    public function destroy(ProductIngredient $productIngredient): Response
     {
         $productIngredient->delete();
 

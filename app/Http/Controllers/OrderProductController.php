@@ -15,7 +15,7 @@ class OrderProductController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         return response()->json(OrderProduct::all());
     }
@@ -26,7 +26,7 @@ class OrderProductController extends Controller
      * @param StoreOrderProduct $request
      * @return JsonResponse
      */
-    public function store(StoreOrderProduct $request)
+    public function store(StoreOrderProduct $request): JsonResponse
     {
         $validated = $request->validated();
 
@@ -47,7 +47,7 @@ class OrderProductController extends Controller
      * @param OrderProduct $orderProduct
      * @return JsonResponse
      */
-    public function show(OrderProduct $orderProduct)
+    public function show(OrderProduct $orderProduct): JsonResponse
     {
         return response()->json($orderProduct);
     }
@@ -59,7 +59,7 @@ class OrderProductController extends Controller
      * @param OrderProduct $orderProduct
      * @return JsonResponse
      */
-    public function update(UpdateOrderProduct $request, OrderProduct $orderProduct)
+    public function update(UpdateOrderProduct $request, OrderProduct $orderProduct): JsonResponse
     {
         $validated = $request->validated();
 
@@ -78,7 +78,7 @@ class OrderProductController extends Controller
      * @param OrderProduct $orderProduct
      * @return Response
      */
-    public function destroy(OrderProduct $orderProduct)
+    public function destroy(OrderProduct $orderProduct): Response
     {
         $orderProduct->delete();
 

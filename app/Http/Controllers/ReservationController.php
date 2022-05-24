@@ -16,7 +16,7 @@ class ReservationController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         return response()->json(Reservation::all());
     }
@@ -27,7 +27,7 @@ class ReservationController extends Controller
      * @param Reservation $reservation
      * @return JsonResponse
      */
-    public function show(Reservation $reservation)
+    public function show(Reservation $reservation): JsonResponse
     {
         return response()->json($reservation);
     }
@@ -38,7 +38,7 @@ class ReservationController extends Controller
      * @param StoreReservation $request
      * @return JsonResponse
      */
-    public function store(StoreReservation $request)
+    public function store(StoreReservation $request): JsonResponse
     {
         $validated = $request->validated();
 
@@ -62,7 +62,7 @@ class ReservationController extends Controller
      * @param Reservation $reservation
      * @return JsonResponse
      */
-    public function update(UpdateReservation $request, Reservation $reservation)
+    public function update(UpdateReservation $request, Reservation $reservation): JsonResponse
     {
         $validated = $request->validated();
 
@@ -83,7 +83,7 @@ class ReservationController extends Controller
      * @param Reservation $reservation
      * @return Response
      */
-    public function destroy(Reservation $reservation)
+    public function destroy(Reservation $reservation): Response
     {
         $reservation->delete();
 
