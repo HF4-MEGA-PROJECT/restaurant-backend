@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\OrderProduct;
 
+use App\Enums\OrderProductStatus;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
@@ -77,6 +78,7 @@ class ControllerTest extends TestCase
         $this->assertEquals(123, $orderProducts->first()->price_at_purchase);
         $this->assertEquals($product->id, $orderProducts->first()->product_id);
         $this->assertEquals($order->id, $orderProducts->first()->order_id);
+        $this->assertEquals(OrderProductStatus::ORDERED->value, $orderProducts->first()->status);
 
         $response->assertExactJson($orderProducts->first()->toArray());
     }
@@ -163,6 +165,7 @@ class ControllerTest extends TestCase
         $response = $this->putJson(route('order_product.update', $orderProduct), [
             'id' => $orderProduct->id,
             'price_at_purchase' => 123,
+            'status' => OrderProductStatus::DELIVERABLE->value,
             'product_id' => $product->id,
             'order_id' => $order->id
         ]);
@@ -173,6 +176,7 @@ class ControllerTest extends TestCase
         $this->assertEquals(123, $orderProducts->first()->price_at_purchase);
         $this->assertEquals($product->id, $orderProducts->first()->product_id);
         $this->assertEquals($order->id, $orderProducts->first()->order_id);
+        $this->assertEquals(OrderProductStatus::DELIVERABLE->value, $orderProducts->first()->status);
 
         $response->assertExactJson($orderProducts->first()->toArray());
     }
@@ -188,6 +192,7 @@ class ControllerTest extends TestCase
         $response = $this->putJson(route('order_product.update', $orderProduct), [
             'id' => $orderProduct->id,
             'price_at_purchase' => 'ikke et tal',
+            'status' => OrderProductStatus::DELIVERABLE->value,
             'product_id' => $product->id,
             'order_id' => $order->id
         ]);
@@ -198,6 +203,7 @@ class ControllerTest extends TestCase
         $this->assertEquals($orderProduct->price_at_purchase, $orderProducts->first()->price_at_purchase);
         $this->assertEquals($orderProduct->product_id, $orderProducts->first()->product_id);
         $this->assertEquals($orderProduct->order_id, $orderProducts->first()->order_id);
+        $this->assertEquals($orderProduct->status, $orderProducts->first()->status);
 
         $response->assertStatus(422);
     }
@@ -213,6 +219,7 @@ class ControllerTest extends TestCase
         $response = $this->putJson(route('order_product.update', $orderProduct), [
             'id' => $orderProduct->id,
             'price_at_purchase' => 123,
+            'status' => OrderProductStatus::DELIVERABLE->value,
             'product_id' => 0,
             'order_id' => $order->id
         ]);
@@ -223,6 +230,7 @@ class ControllerTest extends TestCase
         $this->assertEquals($orderProduct->price_at_purchase, $orderProducts->first()->price_at_purchase);
         $this->assertEquals($orderProduct->product_id, $orderProducts->first()->product_id);
         $this->assertEquals($orderProduct->order_id, $orderProducts->first()->order_id);
+        $this->assertEquals($orderProduct->status, $orderProducts->first()->status);
 
         $response->assertStatus(422);
     }
@@ -238,6 +246,7 @@ class ControllerTest extends TestCase
         $response = $this->putJson(route('order_product.update', $orderProduct), [
             'id' => $orderProduct->id,
             'price_at_purchase' => 123,
+            'status' => OrderProductStatus::DELIVERABLE->value,
             'product_id' => $product->id,
             'order_id' => 0
         ]);
@@ -248,6 +257,34 @@ class ControllerTest extends TestCase
         $this->assertEquals($orderProduct->price_at_purchase, $orderProducts->first()->price_at_purchase);
         $this->assertEquals($orderProduct->product_id, $orderProducts->first()->product_id);
         $this->assertEquals($orderProduct->order_id, $orderProducts->first()->order_id);
+        $this->assertEquals($orderProduct->status, $orderProducts->first()->status);
+
+        $response->assertStatus(422);
+    }
+
+    public function test_order_product_can_not_be_updated_when_status_does_not_exist()
+    {
+        $product = Product::factory()->create();
+        $order = Order::factory()->create();
+        $orderProduct = OrderProduct::factory()->create();
+
+        $this->actingAs($user = User::factory()->create());
+
+        $response = $this->putJson(route('order_product.update', $orderProduct), [
+            'id' => $orderProduct->id,
+            'price_at_purchase' => 123,
+            'status' => 'ikke en status',
+            'product_id' => $product->id,
+            'order_id' => $order->id
+        ]);
+
+        $orderProducts = OrderProduct::all();
+
+        $this->assertCount(1, $orderProducts);
+        $this->assertEquals($orderProduct->price_at_purchase, $orderProducts->first()->price_at_purchase);
+        $this->assertEquals($orderProduct->product_id, $orderProducts->first()->product_id);
+        $this->assertEquals($orderProduct->order_id, $orderProducts->first()->order_id);
+        $this->assertEquals($orderProduct->status, $orderProducts->first()->status);
 
         $response->assertStatus(422);
     }

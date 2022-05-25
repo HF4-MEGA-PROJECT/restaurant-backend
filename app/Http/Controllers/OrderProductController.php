@@ -37,6 +37,7 @@ class OrderProductController extends Controller
         ]);
 
         $orderProduct->save();
+        $orderProduct->refresh();
 
         return response()->json($orderProduct, 201);
     }
@@ -66,7 +67,8 @@ class OrderProductController extends Controller
         $orderProduct->update([
             'price_at_purchase' => $validated['price_at_purchase'],
             'product_id' => $validated['product_id'],
-            'order_id' => $validated['order_id']
+            'order_id' => $validated['order_id'],
+            'status' => $validated['status']
         ]);
 
         return response()->json($orderProduct);

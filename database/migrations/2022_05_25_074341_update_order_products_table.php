@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\OrderProductStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,8 +14,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->longText('description')->nullable()->after('name');
+        Schema::table('order_products', function (Blueprint $table) {
+            $table->enum('status', [OrderProductStatus::ORDERED->value, OrderProductStatus::IN_PROGRESS->value, OrderProductStatus::DELIVERABLE->value])->default('ordered')->after('price_at_purchase');
         });
     }
 
@@ -25,8 +26,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->removeColumn('description');
+        Schema::table('order_products', function (Blueprint $table) {
+            $table->removeColumn('status');
         });
     }
 };
