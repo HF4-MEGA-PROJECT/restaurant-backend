@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\OrderProductStatus;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,6 +24,7 @@ class OrderProductFactory extends Factory
 
         return [
             'price_at_purchase' => $this->faker->numberBetween(0, 150),
+            'status' => OrderProductStatus::cases()[array_rand(OrderProductStatus::cases())]->value,
             'product_id' => $productIds[array_rand($productIds)],
             'order_id' => $orderIds[array_rand($orderIds)],
         ];

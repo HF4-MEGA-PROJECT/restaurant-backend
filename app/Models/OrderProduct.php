@@ -11,7 +11,7 @@ class OrderProduct extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['price_at_purchase', 'product_id', 'order_id'];
+    protected $fillable = ['price_at_purchase', 'product_id', 'order_id', 'status'];
 
     public function product(): BelongsTo {
         return $this->belongsTo(Product::class);

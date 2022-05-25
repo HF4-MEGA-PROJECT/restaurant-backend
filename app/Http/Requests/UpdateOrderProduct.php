@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\OrderProductStatus;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateOrderProduct extends FormRequest
 {
@@ -26,6 +28,7 @@ class UpdateOrderProduct extends FormRequest
         return [
             'id' => 'required|integer|exists:order_products,id',
             'price_at_purchase' => 'required|numeric',
+            'status' => 'required|string|'.Rule::in(OrderProductStatus::ORDERED->value, OrderProductStatus::IN_PROGRESS->value, OrderProductStatus::DELIVERABLE->value),
             'product_id' => 'required|integer|exists:products,id',
             'order_id' => 'required|integer|exists:orders,id'
         ];
