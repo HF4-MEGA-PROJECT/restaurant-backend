@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Table;
+namespace Tests\Feature\Group;
 
 use App\Models\Group;
 use App\Models\User;
@@ -55,15 +55,13 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('group.store'), [
-            'amount_of_people' => 2,
-            'number' => 1
+            'amount_of_people' => 2
         ]);
 
         $groups = Group::all();
 
         $this->assertCount(1, $groups);
         $this->assertEquals(2, $groups->first()->amount_of_people);
-        $this->assertEquals(1, $groups->first()->number);
 
         $expected = $groups->first()->toArray();
 
@@ -77,24 +75,7 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->postJson(route('group.store'), [
-            'amount_of_people' => 0,
-            'number' => 1
-        ]);
-
-        $groups = Group::all();
-
-        $this->assertCount(0, $groups);
-
-        $response->assertStatus(422);
-    }
-
-    public function test_group_can_not_be_created_when_number_is_invalid()
-    {
-        $this->actingAs($user = User::factory()->create());
-
-        $response = $this->postJson(route('group.store'), [
-            'amount_of_people' => 2,
-            'number' => 'ikke et tal',
+            'amount_of_people' => 0
         ]);
 
         $groups = Group::all();
@@ -123,15 +104,14 @@ class ControllerTest extends TestCase
 
         $response = $this->putJson(route('group.update', $group), [
             'id' => $group->id,
-            'amount_of_people' => 2,
-            'number' => 1
+            'amount_of_people' => 2
         ]);
 
         $groups = Group::all();
 
         $this->assertCount(1, $groups);
         $this->assertEquals(2, $groups->first()->amount_of_people);
-        $this->assertEquals(1, $groups->first()->number);
+        $this->assertEquals($group->number, $groups->first()->number);
 
         $response->assertExactJson($groups->first()->toArray());
     }
@@ -143,28 +123,7 @@ class ControllerTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $response = $this->putJson(route('group.update', $group), [
-            'amount_of_people' => 0,
-            'number' => 1
-        ]);
-
-        $groups = Group::all();
-
-        $this->assertCount(1, $groups);
-        $this->assertEquals($group->amount_of_people, $groups->first()->amount_of_people);
-        $this->assertEquals($group->number, $groups->first()->number);
-
-        $response->assertStatus(422);
-    }
-
-    public function test_group_can_not_be_updated_when_number_is_invalid()
-    {
-        $group = Group::factory()->create();
-
-        $this->actingAs($user = User::factory()->create());
-
-        $response = $this->putJson(route('group.update', $group), [
-            'amount_of_people' => 2,
-            'number' => 'ikke et tal',
+            'amount_of_people' => 0
         ]);
 
         $groups = Group::all();

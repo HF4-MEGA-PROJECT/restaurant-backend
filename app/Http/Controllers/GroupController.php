@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreGroup;
 use App\Http\Requests\UpdateGroup;
 use App\Models\Group;
+use App\Utility\Number;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -32,7 +33,7 @@ class GroupController extends Controller
 
         $group = new Group([
             'amount_of_people' => $validated['amount_of_people'],
-            'number' => $validated['number']
+            'number' => (new Number())->lowestAvailableNumber(Group::all(['number'])->toArray())
         ]);
 
         $group->save();
@@ -63,8 +64,7 @@ class GroupController extends Controller
         $validated = $request->validated();
 
         $group->update([
-            'amount_of_people' => $validated['amount_of_people'],
-            'number' => $validated['number']
+            'amount_of_people' => $validated['amount_of_people']
         ]);
 
         return response()->json($group);

@@ -24,8 +24,7 @@ class StoreGroup extends FormRequest
     public function rules()
     {
         return [
-            'amount_of_people' => 'required|integer|gt:0',
-            'number' => 'required|integer'
+            'amount_of_people' => 'required|integer|gt:0'
         ];
     }
 }
