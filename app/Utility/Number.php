@@ -4,12 +4,16 @@ namespace App\Utility;
 
 class Number {
     public function lowestAvailableNumber(array $numbers): int {
+        sort($numbers, SORT_ASC);
+
         $lowestNumber = -1;
-        foreach ($numbers as $i => $iValue) {
-            if ($iValue !== $i) {
-                $lowestNumber = $i;
+        $offset = $numbers[0] ?? 0;
+        foreach ($numbers as $number) {
+            if ($number !== $offset) {
+                $lowestNumber = $offset;
                 break;
             }
+            ++$offset;
         }
 
         if ($lowestNumber === -1) {
