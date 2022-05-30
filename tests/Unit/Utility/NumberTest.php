@@ -30,4 +30,12 @@ class NumberTest extends TestCase
 
         $this->assertEquals(1, $number->lowestAvailableNumber($array));
     }
+
+    public function test_lowestAvailableNumber_next_number(): void {
+        $number = new Number();
+
+        $array = [1];
+
+        $this->assertEquals(2, $number->lowestAvailableNumber($array));
+    }
 }

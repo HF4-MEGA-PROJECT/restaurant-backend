@@ -33,7 +33,9 @@ class GroupController extends Controller
 
         $group = new Group([
             'amount_of_people' => $validated['amount_of_people'],
-            'number' => (new Number())->lowestAvailableNumber(Group::all(['number'])->toArray())
+            'number' => (new Number())->lowestAvailableNumber(Group::all(['number'])->map(static function (Group $group) {
+                return $group->number;
+            })->toArray())
         ]);
 
         $group->save();

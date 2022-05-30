@@ -3,9 +3,10 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\GroupResource\Pages;
-use App\Filament\Resources\GroupResource\RelationManagers;
 use App\Models\Group;
+use App\Utility\Number;
 use Filament\Forms;
+use Filament\Forms\Components\Hidden;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -23,8 +24,12 @@ class GroupResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('amount_of_people')
                     ->required(),
-                Forms\Components\TextInput::make('number')
-                    ->required(),
+                Forms\Components\Hidden::make('number')
+                    ->beforeStateDehydrated(function (Hidden $component, $state) {
+                        $component->state((new Number())->lowestAvailableNumber(Group::all(['number'])->map(static function (Group $group) {
+                            return $group->number;
+                        })->toArray()));
+                    }),
             ]);
     }
 
@@ -45,14 +50,14 @@ class GroupResource extends Resource
                 //
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
