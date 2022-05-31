@@ -6,6 +6,7 @@ use App\Http\Requests\StoreReservation;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Date;
 
 class PWAController extends Controller
 {
@@ -43,5 +44,22 @@ class PWAController extends Controller
     public function reserve(ReservationController $reservationController, StoreReservation $request): JsonResponse
     {
         return $reservationController->store($request);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function reserveDates(): JsonResponse
+    {
+        return '';
+    }
+
+    /**
+     * @param Date $date
+     * @return JsonResponse
+     */
+    public function reserveTimes(Date $date): JsonResponse
+    {
+        return '';
     }
 }
