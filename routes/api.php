@@ -28,6 +28,8 @@ Route::apiResource('order_product', \App\Http\Controllers\OrderProductController
 Route::apiResource('ingredient', \App\Http\Controllers\IngredientController::class);
 Route::apiResource('product_ingredient', \App\Http\Controllers\ProductIngredientController::class);
 
+Route::get('/orders', [\App\Http\Controllers\AppController::class, 'orders']);
+
 Route::get('/menu', [\App\Http\Controllers\PWAController::class, 'menu']);
 Route::get('/hours', [\App\Http\Controllers\PWAController::class, 'hours']);
 Route::post('/reserve', [\App\Http\Controllers\PWAController::class, 'reserve']);

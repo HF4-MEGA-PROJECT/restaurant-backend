@@ -27,13 +27,19 @@ class ModelTest extends TestCase
     public function test_can_get_ingredients()
     {
         $ingredient = Ingredient::factory()->create();
+        $ingredient = $ingredient->refresh();
         $product = Product::factory()->create();
+        $product = $product->refresh();
         ProductIngredient::factory()->create(['ingredient_id' => $ingredient->id, 'product_id' => $product->id]);
+
+        $expectedIngredient = $ingredient->toArray();
+        $expectedIngredient['pivot'] = [
+            'product_id' => $product->id,
+            'ingredient_id' => $ingredient->id
+        ];
 
         $result = $product->ingredients()->first()->toArray();
 
-        unset($result['deleted_at'], $result['laravel_through_key'], $result['pivot']);
-
-        $this->assertEquals($ingredient->toArray(), $result);
+        $this->assertEquals($expectedIngredient, $result);
     }
 }
