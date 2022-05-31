@@ -39,6 +39,7 @@ class ProductController extends Controller
         ]);
 
         $product->save();
+        $product->refresh();
 
         return response()->json($product, 201);
     }
