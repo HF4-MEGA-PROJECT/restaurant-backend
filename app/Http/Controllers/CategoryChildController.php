@@ -17,6 +17,6 @@ class CategoryChildController extends Controller
      */
     public function index(Category $category): JsonResponse
     {
-        return response()->json($category->sub_categories());
+        return response()->json($category->sub_categories()->get());
     }
 }
