@@ -18,98 +18,98 @@ class SettingSeeder extends Seeder
     {
         DB::table('settings')->insert([
             'key' => 'monday_opening',
-            'value' => 12,
+            'value' => '12:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'monday_closing',
-            'value' => 20,
+            'value' => '20:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'tuesday_opening',
-            'value' => 12,
+            'value' => '12:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'tuesday_closing',
-            'value' => 20,
+            'value' => '20:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'wednesday_opening',
-            'value' => 12,
+            'value' => '12:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'wednesday_closing',
-            'value' => 20,
+            'value' => '20:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'thursday_opening',
-            'value' => 12,
+            'value' => '12:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'thursday_closing',
-            'value' => 20,
+            'value' => '20:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'friday_opening',
-            'value' => 12,
+            'value' => '12:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'friday_closing',
-            'value' => 22,
+            'value' => '22:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'saturday_opening',
-            'value' => 10,
+            'value' => '10:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'saturday_closing',
-            'value' => 22,
+            'value' => '22:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'sunday_opening',
-            'value' => 10,
+            'value' => '10:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
 
         DB::table('settings')->insert([
             'key' => 'sunday_closing',
-            'value' => 20,
+            'value' => '20:00:00',
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
