@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReservation;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Setting;
+use App\Utility\DateReservation;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Date;
 
@@ -51,15 +54,20 @@ class PWAController extends Controller
      */
     public function reserveDates(): JsonResponse
     {
-        return '';
+        $settings = Setting::all()->pluck('value', 'key');
+        $dateReservation = new DateReservation($settings->toArray());
+        return response()->json(['unavailable_dates' => $dateReservation->getUnavailableDays()]);
     }
 
     /**
-     * @param Date $date
+     * @param string $date
      * @return JsonResponse
      */
-    public function reserveTimes(Date $date): JsonResponse
+    public function reserveTimes(string $date): JsonResponse
     {
-        return '';
+        $carbonDate = Carbon::createFromFormat('Y-m-d H:i:s', $date . ' 12:00:00');
+        $settings = Setting::all()->pluck('value', 'key');
+        $dateReservation = new DateReservation($settings->toArray());
+        return response()->json($dateReservation->getAvailableTimesForDay($carbonDate));
     }
 }

@@ -10,9 +10,9 @@ class DateReservation {
 
     private array $timesInDay = [];
 
-    public function __construct()
+    public function __construct(array $settings)
     {
-        $this->settings = ['wednesday_opening' => '10:00:00', 'wednesday_closing' => '22:00:00', 'visit_length_minutes' => 60];
+        $this->settings = $settings;
     }
 
     public function getUnavailableDays(): array {
@@ -23,8 +23,8 @@ class DateReservation {
         return $this->getTimesForDayOfWeek($day);
     }
 
-    public function checkIfTimeIsAvailableForDay(Carbon $datetime): array {
-        return [];
+    public function IsTimeAvailableForDay(Carbon $datetime): bool {
+        return true;
     }
 
     public function getTimesForDayOfWeek(Carbon $carbon): array {
