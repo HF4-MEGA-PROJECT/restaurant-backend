@@ -16,11 +16,11 @@ class ModelTest extends TestCase
     {
         Order::factory()->create();
         $product = Product::factory()->create();
+        $product = $product->refresh();
         $orderProduct = OrderProduct::factory()->create(['product_id' => $product->id]);
+        $orderProduct = $orderProduct->refresh();
 
         $result = $orderProduct->product()->first()->toArray();
-
-        unset($result['deleted_at']);
 
         $this->assertEquals($product->toArray(), $result);
     }

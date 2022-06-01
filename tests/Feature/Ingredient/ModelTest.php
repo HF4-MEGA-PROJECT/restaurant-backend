@@ -15,13 +15,19 @@ class ModelTest extends TestCase
     public function test_can_get_products()
     {
         $ingredient = Ingredient::factory()->create();
+        $ingredient = $ingredient->refresh();
         $product = Product::factory()->create();
+        $product = $product->refresh();
         ProductIngredient::factory()->create(['ingredient_id' => $ingredient->id, 'product_id' => $product->id]);
 
         $result = $ingredient->products()->first()->toArray();
 
-        unset($result['deleted_at'], $result['laravel_through_key'], $result['pivot']);
+        $expectedProduct = $product->toArray();
+        $expectedProduct['pivot'] = [
+            'ingredient_id' => $ingredient->id,
+            'product_id' => $product->id
+        ];
 
-        $this->assertEquals($product->toArray(), $result);
+        $this->assertEquals($expectedProduct, $result);
     }
 }

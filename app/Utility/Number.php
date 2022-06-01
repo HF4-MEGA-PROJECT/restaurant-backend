@@ -3,17 +3,16 @@
 namespace App\Utility;
 
 class Number {
-    public function lowestAvailableNumber(array $numbers): int {
+    public function lowestAvailableNumber(array $numbers, int $minimum): int {
         sort($numbers, SORT_ASC);
 
         $lowestNumber = -1;
-        $offset = $numbers[0] ?? 0;
         foreach ($numbers as $number) {
-            if ($number !== $offset) {
-                $lowestNumber = $offset;
+            if ($number !== $minimum) {
+                $lowestNumber = $minimum;
                 break;
             }
-            ++$offset;
+            ++$minimum;
         }
 
         if ($lowestNumber === -1) {

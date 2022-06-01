@@ -28,14 +28,22 @@ class ModelTest extends TestCase
     public function test_can_get_products()
     {
         $order = Order::factory()->create();
+        $order = $order->refresh();
         $product = Product::factory()->create();
+        $product = $product->refresh();
         $orderProduct = OrderProduct::factory()->create(['price_at_purchase' => 123, 'order_id' => $order->id, 'product_id' => $product->id]);
+        $orderProduct = $orderProduct->refresh();
 
         $result = $order->products()->first()->toArray();
 
-        unset($result['deleted_at']);
-        unset($result['pivot']);
+        $expectedProduct = $product->toArray();
+        $expectedProduct['pivot'] = [
+          'order_id' => $order->id,
+          'product_id' => $product->id,
+          'price_at_purchase' => $orderProduct->price_at_purchase,
+          'status' => $orderProduct->status,
+        ];
 
-        $this->assertEquals($product->toArray(), $result);
+        $this->assertEquals($expectedProduct, $result);
     }
 }

@@ -28,7 +28,7 @@ class GroupResource extends Resource
                     ->beforeStateDehydrated(function (Hidden $component, $state) {
                         $component->state((new Number())->lowestAvailableNumber(Group::all(['number'])->map(static function (Group $group) {
                             return $group->number;
-                        })->toArray()));
+                        })->toArray(), 1));
                     }),
             ]);
     }

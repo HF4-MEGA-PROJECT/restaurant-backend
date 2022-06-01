@@ -113,6 +113,7 @@ class ControllerTest extends TestCase
     public function test_setting_can_be_updated()
     {
         $setting = Setting::factory()->create();
+        $setting = $setting->refresh();
 
         $this->actingAs($user = User::factory()->create());
 
@@ -129,9 +130,6 @@ class ControllerTest extends TestCase
         $this->assertEquals(64, $settings->first()->value);
 
         $expected = $settings->first()->toArray();
-
-        unset($expected['created_at']);
-        unset($expected['updated_at']);
 
         $response->assertJsonFragment($expected);
     }

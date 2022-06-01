@@ -35,10 +35,11 @@ class GroupController extends Controller
             'amount_of_people' => $validated['amount_of_people'],
             'number' => (new Number())->lowestAvailableNumber(Group::all(['number'])->map(static function (Group $group) {
                 return $group->number;
-            })->toArray())
+            })->toArray(), 1)
         ]);
 
         $group->save();
+        $group->refresh();
 
         return response()->json($group, 201);
     }

@@ -71,8 +71,6 @@ class ControllerTest extends TestCase
 
         $expected = $products->first()->toArray();
 
-        unset($expected['deleted_at']);
-
         $response->assertExactJson($expected);
     }
 
