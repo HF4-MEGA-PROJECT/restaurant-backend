@@ -5,6 +5,7 @@ namespace App\Utility;
 use App\Models\Reservation;
 use App\Models\Setting;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DateReservation
 {
@@ -17,6 +18,16 @@ class DateReservation
 
     public function getUnavailableDays(): array
     {
+        $return = DB::table('reservations')
+            ->selectRaw("DATE_FORMAT(time, '%Y-%m-%d')  as 'day'")
+            ->groupByRaw("DATE_FORMAT(time, '%Y-%m-%d')")
+            ->havingRaw('SUM(amount_of_people) > ?', [3])
+            ->get()
+            ->map(function ($item, $key) {
+                return $item['day'];
+            })
+            ->toArray();
+
         return [];
     }
 
