@@ -12,7 +12,7 @@ class DateReservation {
 
     public function __construct()
     {
-        $this->settings = ['wednesday_opening' => '10:00:00', 'wednesday_closing' => '10:00:00', 'visit_length_minutes' => 60];
+        $this->settings = ['wednesday_opening' => '10:00:00', 'wednesday_closing' => '22:00:00', 'visit_length_minutes' => 60];
     }
 
     public function getUnavailableDays(): array {
@@ -20,7 +20,7 @@ class DateReservation {
     }
 
     public function getAvailableTimesForDay(Carbon $day): array {
-        return [];
+        return $this->getTimesForDayOfWeek($day);
     }
 
     public function checkIfTimeIsAvailableForDay(Carbon $datetime): array {
@@ -34,9 +34,17 @@ class DateReservation {
         $closingTime = $this->settings[$dayOfWeek.'_closing'];
         $visitLengthMinutes = $this->settings['visit_length_minutes'];
 
-        error_log(print_r($openingTime, true));
-        error_log(print_r($closingTime, true));
+        $times = [];
+        for ($carbon->setTimeFromTimeString($openingTime) ; $carbon->format('H:i:s') !== $closingTime ; ) {
+            $startTime = $carbon->format('H:i:s');
+            $carbon->addMinutes($visitLengthMinutes);
+            $endTime = $carbon->format('H:i:s');
+            $times[] = [
+                'startTime' => $startTime,
+                'endTime' => $endTime,
+                ];
+        }
 
-        return [];
+        return $times;
     }
 }
