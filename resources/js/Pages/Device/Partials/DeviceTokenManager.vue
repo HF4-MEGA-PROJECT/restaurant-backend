@@ -167,8 +167,8 @@ const deleteApiToken = () => {
                     Please copy your new device token. For your security, it won't be shown again.
                 </div>
                 <template v-if="$page.props.jetstream.flash.token">
-                    <vue-qrcode class="mx-auto" :value="$page.props.jetstream.flash.token" :options="{ width: 400 }"></vue-qrcode>
-                    <div class="mt-4 bg-gray-100 px-4 py-2 rounded font-mono text-sm text-gray-500">
+                    <vue-qrcode class="mx-auto" :value="$page.props.jetstream.flash.token" :options="{ width: 300 }"></vue-qrcode>
+                    <div class="mt-4 bg-gray-100 px-4 py-2 rounded font-mono text-sm text-gray-500" style="word-wrap: anywhere">
                         {{ $page.props.jetstream.flash.token }}
                     </div>
                 </template>
