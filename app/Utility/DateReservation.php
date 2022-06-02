@@ -42,6 +42,7 @@ class DateReservation {
             $times[] = [
                 'startTime' => $startTime,
                 'endTime' => $endTime,
+                'available' => true,
                 ];
         }
 
