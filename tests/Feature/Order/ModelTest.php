@@ -38,10 +38,13 @@ class ModelTest extends TestCase
 
         $expectedProduct = $product->toArray();
         $expectedProduct['pivot'] = [
+          'id' => $orderProduct->id,
           'order_id' => $order->id,
           'product_id' => $product->id,
           'price_at_purchase' => $orderProduct->price_at_purchase,
           'status' => $orderProduct->status,
+          'created_at' => $orderProduct->toArray()['created_at'],
+          'updated_at' => $orderProduct->toArray()['updated_at']
         ];
 
         $this->assertEquals($expectedProduct, $result);
