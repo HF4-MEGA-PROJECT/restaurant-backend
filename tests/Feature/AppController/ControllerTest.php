@@ -109,7 +109,7 @@ class ControllerTest extends TestCase
         $group->refresh();
         $order = Order::factory()->create(['group_id' => $group->id]);
         Order::factory()->create();
-        $order_product = OrderProduct::factory()->create(['status' => OrderProductStatus::IN_PROGRESS->value]);
+        $order_product = OrderProduct::factory()->create(['order_id' => $order->id, 'status' => OrderProductStatus::IN_PROGRESS->value]);
         $order_product->refresh();
 
         $this->actingAs($user = User::factory()->create());
