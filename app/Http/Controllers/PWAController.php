@@ -46,7 +46,19 @@ class PWAController extends Controller
      */
     public function reserve(ReservationController $reservationController, StoreReservation $request): JsonResponse
     {
-        return $reservationController->store($request);
+        // DateReservation class init
+        $settings = Setting::all()->pluck('value', 'key');
+        $dateReservation = new DateReservation($settings->toArray());
+
+        // Validation and Carbon date creation
+        $validated = $request->validated();
+        $carbonDate = Carbon::createFromFormat('Y-m-d H:i:s', $validated['time']);
+
+        if ($dateReservation->IsTimeAvailableForDay($carbonDate)) {
+            return $reservationController->store($request);
+        }
+
+        return response()->json('Reservation not available',403);
     }
 
     /**
@@ -54,8 +66,10 @@ class PWAController extends Controller
      */
     public function reserveDates(): JsonResponse
     {
+        // DateReservation class init
         $settings = Setting::all()->pluck('value', 'key');
         $dateReservation = new DateReservation($settings->toArray());
+
         return response()->json(['unavailable_dates' => $dateReservation->getUnavailableDays()]);
     }
 
@@ -65,9 +79,13 @@ class PWAController extends Controller
      */
     public function reserveTimes(string $date): JsonResponse
     {
-        $carbonDate = Carbon::createFromFormat('Y-m-d H:i:s', $date . ' 12:00:00');
+        // DateReservation class init
         $settings = Setting::all()->pluck('value', 'key');
         $dateReservation = new DateReservation($settings->toArray());
+
+        // Carbon date creation
+        $carbonDate = Carbon::createFromFormat('Y-m-d H:i:s', $date . ' 12:00:00');
+
         return response()->json($dateReservation->getAvailableTimesForDay($carbonDate));
     }
 }

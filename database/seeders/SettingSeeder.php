@@ -120,5 +120,12 @@ class SettingSeeder extends Seeder
             'created_at' => DateTime::dateTimeThisYear(),
             'updated_at' => DateTime::dateTimeThisYear(),
         ]);
+
+        DB::table('settings')->insert([
+            'key' => 'max_visitors',
+            'value' => 60,
+            'created_at' => DateTime::dateTimeThisYear(),
+            'updated_at' => DateTime::dateTimeThisYear(),
+        ]);
     }
 }

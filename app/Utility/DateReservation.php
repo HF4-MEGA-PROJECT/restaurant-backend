@@ -2,48 +2,78 @@
 
 namespace App\Utility;
 
+use App\Models\Reservation;
 use App\Models\Setting;
 use Carbon\Carbon;
 
-class DateReservation {
+class DateReservation
+{
     private array $settings;
-
-    private array $timesInDay = [];
 
     public function __construct(array $settings)
     {
         $this->settings = $settings;
     }
 
-    public function getUnavailableDays(): array {
+    public function getUnavailableDays(): array
+    {
         return [];
     }
 
-    public function getAvailableTimesForDay(Carbon $day): array {
-        return $this->getTimesForDayOfWeek($day);
+    public function getAvailableTimesForDay(Carbon $day): array
+    {
+        $timesForToday = $this->getTimesForDayOfWeek($day);
+        $max = (($this->settings['max_visitors'] / 3) * 2);
+
+        $timesForTodayWithAvailability = [];
+        foreach ($timesForToday as $time) {
+            $from = Carbon::createFromFormat('Y-m-d H:i:s', $day->format('Y-m-d') . ' ' . $time['startTime'])->toDateTimeString();
+            $to = Carbon::createFromFormat('Y-m-d H:i:s', $day->format('Y-m-d') . ' ' . $time['endTime'])->toDateTimeString();
+            $sum = (int)Reservation::whereBetween('time', [$from, $to])->sum('amount_of_people');
+
+            if ($sum > $max) {
+                $time['available'] = false;
+            } else {
+                $time['available'] = true;
+            }
+
+            $timesForTodayWithAvailability[] = $time;
+        }
+
+        return $timesForTodayWithAvailability;
     }
 
-    public function IsTimeAvailableForDay(Carbon $datetime): bool {
+    public function IsTimeAvailableForDay(Carbon $datetime): bool
+    {
+        $timesForTodayWithAvailability = $this->getAvailableTimesForDay($datetime);
+        $timeFormatted = $datetime->format('H:i:s');
+
+        foreach ($timesForTodayWithAvailability as $time) {
+            if ($timeFormatted === $time['startTime']) {
+                return $time['available'];
+            }
+        }
+
         return true;
     }
 
-    public function getTimesForDayOfWeek(Carbon $carbon): array {
+    public function getTimesForDayOfWeek(Carbon $carbon): array
+    {
         $dayOfWeek = strtolower($carbon->englishDayOfWeek);
 
-        $openingTime = $this->settings[$dayOfWeek.'_opening'];
-        $closingTime = $this->settings[$dayOfWeek.'_closing'];
+        $openingTime = $this->settings[$dayOfWeek . '_opening'];
+        $closingTime = $this->settings[$dayOfWeek . '_closing'];
         $visitLengthMinutes = $this->settings['visit_length_minutes'];
 
         $times = [];
-        for ($carbon->setTimeFromTimeString($openingTime) ; $carbon->format('H:i:s') !== $closingTime ; ) {
+        for ($carbon->setTimeFromTimeString($openingTime); $carbon->format('H:i:s') !== $closingTime;) {
             $startTime = $carbon->format('H:i:s');
             $carbon->addMinutes($visitLengthMinutes);
             $endTime = $carbon->format('H:i:s');
             $times[] = [
                 'startTime' => $startTime,
                 'endTime' => $endTime,
-                'available' => true,
-                ];
+            ];
         }
 
         return $times;
