@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->apiResource('category', \App\Http\Controllers\CategoryController::class);
 Route::middleware('auth:sanctum')->apiResource('category.children', \App\Http\Controllers\CategoryChildController::class)->only(['index']);
+Route::middleware('auth:sanctum')->apiResource('category.products', \App\Http\Controllers\ProductChildController::class)->only(['index']);
 Route::middleware('auth:sanctum')->apiResource('product', \App\Http\Controllers\ProductController::class);
 Route::middleware('auth:sanctum')->apiResource('reservation', \App\Http\Controllers\ReservationController::class);
 Route::middleware('auth:sanctum')->apiResource('setting', \App\Http\Controllers\SettingController::class);
