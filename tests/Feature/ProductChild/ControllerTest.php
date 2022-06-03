@@ -14,7 +14,7 @@ class ControllerTest extends TestCase
 
     public function test_product_can_be_fetched_when_one_product_exist(){
         $product = Product::factory()->create();
-        Product::factory()->create(['category_id' => $product->id]);
+        Product::factory()->create(['category_id' => $product->categories_id]);
 
         $this->actingAs($user = User::factory()->create());
         $response = $this->getJson(route('product.children.index', $product));
