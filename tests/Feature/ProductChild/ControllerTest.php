@@ -18,7 +18,7 @@ class ControllerTest extends TestCase
 
         $this->actingAs($user = User::factory()->create());
         $response = $this->getJson(route('product.children.index', $product));
-        $products = $product->sub_categories()->get();
+        $products = $product->products()->get();
 
         $response->assertExactJson($products->toArray());
     }
