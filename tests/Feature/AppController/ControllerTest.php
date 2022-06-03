@@ -3,6 +3,7 @@
 namespace Tests\Feature\AppController;
 
 use App\Enums\OrderProductStatus;
+use App\Models\Group;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
@@ -97,6 +98,43 @@ class ControllerTest extends TestCase
         $response = $this->getJson('/api/orders');
 
         $expected = [];
+
+        $response->assertExactJson($expected);
+    }
+
+    public function test_group_orders_only_fetch_specific_group(): void {
+        $product = Product::factory()->create();
+        $product->refresh();
+        $group = Group::factory()->create();
+        $group->refresh();
+        $order = Order::factory()->create(['group_id' => $group->id]);
+        Order::factory()->create();
+        $order_product = OrderProduct::factory()->create(['status' => OrderProductStatus::IN_PROGRESS->value]);
+        $order_product->refresh();
+
+        $this->actingAs($user = User::factory()->create());
+
+        $response = $this->getJson('/api/group/' . $group->id . '/orders');
+
+        $expectedProduct = $product->toArray();
+        $expectedProduct['pivot'] = [
+            'id' => $order_product->id,
+            'order_id' => $order->id,
+            'price_at_purchase' => $order_product->price_at_purchase,
+            'product_id' => $product->id,
+            'status' => $order_product->status,
+            'created_at' => $order_product->toArray()['created_at'],
+            'updated_at' => $order_product->toArray()['updated_at']
+        ];
+
+        $expectedOrder = $order->toArray();
+        $expectedOrder['products'] = [
+            $expectedProduct
+        ];
+
+        $expected = [
+            $expectedOrder
+        ];
 
         $response->assertExactJson($expected);
     }
