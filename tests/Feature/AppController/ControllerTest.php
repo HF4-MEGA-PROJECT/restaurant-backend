@@ -4,7 +4,6 @@ namespace Tests\Feature\AppController;
 
 use App\Enums\OrderProductStatus;
 use App\Models\Order;
-use App\Models\Group;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\User;
@@ -29,10 +28,13 @@ class ControllerTest extends TestCase
 
         $expectedProduct = $product->toArray();
         $expectedProduct['pivot'] = [
+            'id' => $order_product->id,
             'order_id' => $order->id,
             'price_at_purchase' => $order_product->price_at_purchase,
             'product_id' => $product->id,
-            'status' => $order_product->status
+            'status' => $order_product->status,
+            'created_at' => $order_product->toArray()['created_at'],
+            'updated_at' => $order_product->toArray()['updated_at']
         ];
 
         $expectedOrder = Order::all()->toArray()[0];
@@ -61,10 +63,13 @@ class ControllerTest extends TestCase
 
         $expectedProduct = $product->toArray();
         $expectedProduct['pivot'] = [
+            'id' => $order_product->id,
             'order_id' => $order->id,
             'price_at_purchase' => $order_product->price_at_purchase,
             'product_id' => $product->id,
-            'status' => $order_product->status
+            'status' => $order_product->status,
+            'created_at' => $order_product->toArray()['created_at'],
+            'updated_at' => $order_product->toArray()['updated_at']
         ];
 
         $expectedOrder = Order::all()->toArray()[0];
