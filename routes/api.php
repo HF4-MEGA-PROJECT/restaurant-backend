@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(static function () {
     Route::apiResource('category', \App\Http\Controllers\CategoryController::class);
     Route::apiResource('category.children', \App\Http\Controllers\CategoryChildController::class)->only(['index']);
+    Route::apiResource('category.products', \App\Http\Controllers\ProductChildController::class)->only(['index']);
     Route::apiResource('product', \App\Http\Controllers\ProductController::class);
     Route::apiResource('reservation', \App\Http\Controllers\ReservationController::class);
     Route::apiResource('setting', \App\Http\Controllers\SettingController::class);
