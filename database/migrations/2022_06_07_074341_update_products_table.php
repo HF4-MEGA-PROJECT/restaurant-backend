@@ -15,7 +15,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->enum('type', [ProductTypes::FOOD->value, ProductTypes::DRINKS->value, ProductTypes::SNACKS->value])->default('food')->after('price_at_purchase');
+            $table->enum('type', [ProductTypes::FOOD->value, ProductTypes::DRINKS->value, ProductTypes::SNACKS->value])->default('food')->after('description');
         });
     }
 

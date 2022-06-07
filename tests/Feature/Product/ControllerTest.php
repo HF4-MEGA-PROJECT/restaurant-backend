@@ -56,6 +56,7 @@ class ControllerTest extends TestCase
         $response = $this->postJson(route('product.store'), [
             'name' => 'Tigerrejesalat',
             'description' => 'En anretning med rejer, tiger, salat.',
+            'type' => 'food',
             'price' => 123,
             'category_id' => null,
             'photo_path' => null,
@@ -66,6 +67,7 @@ class ControllerTest extends TestCase
         $this->assertCount(1, $products);
         $this->assertEquals('Tigerrejesalat', $products->first()->name);
         $this->assertEquals('En anretning med rejer, tiger, salat.', $products->first()->description);
+        $this->assertEquals('food', $products->first()->type);
         $this->assertEquals(123, $products->first()->price);
         $this->assertEquals(null, $products->first()->category_id);
 
@@ -146,6 +148,7 @@ class ControllerTest extends TestCase
             'id' => $product->id,
             'name' => 'Tigerrejesalat',
             'description' => 'En anretning med rejer, tiger, salat.',
+            'type' => 'food',
             'price' => 123,
             'category_id' => null,
             'photo_path' => null,
@@ -156,6 +159,7 @@ class ControllerTest extends TestCase
         $this->assertCount(1, $products);
         $this->assertEquals('Tigerrejesalat', $products->first()->name);
         $this->assertEquals('En anretning med rejer, tiger, salat.', $products->first()->description);
+        $this->assertEquals('food', $products->first()->type);
         $this->assertEquals(123, $products->first()->price);
         $this->assertEquals(null, $products->first()->category_id);
 
