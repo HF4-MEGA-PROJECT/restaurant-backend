@@ -18,23 +18,23 @@ class DateReservation
 
     public function getUnavailableDays(): array
     {
-        $return = DB::table('reservations')
+        $max = $this->getMaxVisitors();
+
+        return DB::table('reservations')
             ->selectRaw("DATE_FORMAT(time, '%Y-%m-%d')  as 'day'")
             ->groupByRaw("DATE_FORMAT(time, '%Y-%m-%d')")
-            ->havingRaw('SUM(amount_of_people) > ?', [3])
+            ->havingRaw('SUM(amount_of_people) > ?', [$max])
             ->get()
             ->map(function ($item, $key) {
-                return $item['day'];
+                return $item->day;
             })
             ->toArray();
-
-        return [];
     }
 
     public function getAvailableTimesForDay(Carbon $day): array
     {
         $timesForToday = $this->getTimesForDayOfWeek($day);
-        $max = (($this->settings['max_visitors'] / 3) * 2);
+        $max = $this->getMaxVisitors();
 
         $timesForTodayWithAvailability = [];
         foreach ($timesForToday as $time) {
@@ -88,5 +88,9 @@ class DateReservation
         }
 
         return $times;
+    }
+
+    private function getMaxVisitors(): int {
+        return (($this->settings['max_visitors'] / 3) * 2);
     }
 }
