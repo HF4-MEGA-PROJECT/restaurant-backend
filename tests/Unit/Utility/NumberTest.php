@@ -3,7 +3,7 @@
 namespace Tests\Unit\Utility;
 
 use App\Utility\Number;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class NumberTest extends TestCase
 {

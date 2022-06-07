@@ -37,4 +37,6 @@ Route::middleware('auth:sanctum')->group(static function () {
 
 Route::get('/menu', [\App\Http\Controllers\PWAController::class, 'menu']);
 Route::get('/hours', [\App\Http\Controllers\PWAController::class, 'hours']);
+Route::get('/reserve/dates', [\App\Http\Controllers\PWAController::class, 'reserveDates']);
+Route::get('/reserve/date/{date}/times', [\App\Http\Controllers\PWAController::class, 'reserveTimes']);
 Route::post('/reserve', [\App\Http\Controllers\PWAController::class, 'reserve']);
