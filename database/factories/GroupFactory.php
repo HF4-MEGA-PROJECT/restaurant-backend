@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Group;
+use App\Utility\Number;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +20,9 @@ class GroupFactory extends Factory
     {
         return [
             'amount_of_people' => $this->faker->numberBetween(1, 16),
-            'number' => $this->faker->numberBetween(1, 999)
+            'number' => (new Number())->lowestAvailableNumber(Group::all(['number'])->map(static function (Group $group) {
+                return $group->number;
+            })->toArray(), 1)
         ];
     }
 }
