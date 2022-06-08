@@ -30,8 +30,8 @@ Route::middleware('auth:sanctum')->group(static function () {
     Route::apiResource('order_product', \App\Http\Controllers\OrderProductController::class);
     Route::apiResource('ingredient', \App\Http\Controllers\IngredientController::class);
     Route::apiResource('product_ingredient', \App\Http\Controllers\ProductIngredientController::class);
-
-    Route::get('/orders', [\App\Http\Controllers\AppController::class, 'orders']);
+    Route::get('/orders/kitchen', [\App\Http\Controllers\AppController::class, 'kitchenOrders']);
+    Route::get('/orders/bar', [\App\Http\Controllers\AppController::class, 'barOrders']);
     Route::get('/group/{group}/orders', [\App\Http\Controllers\AppController::class, 'groupOrders']);
 });
 

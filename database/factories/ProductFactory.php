@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\ProductTypes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +21,7 @@ class ProductFactory extends Factory
             'name' => $this->faker->text(255),
             'description' => $this->faker->text(1000),
             'price' => $this->faker->numberBetween(),
+            'type' => ProductTypes::cases()[array_rand(ProductTypes::cases())]->value,
             'category_id' => null,
             'photo_path' => null,
         ];

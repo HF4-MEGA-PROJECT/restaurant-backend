@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\ProductTypes;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreProduct extends FormRequest
 {
@@ -26,6 +28,7 @@ class StoreProduct extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'type' => 'string|'.Rule::in(ProductTypes::FOOD->value, ProductTypes::DRINKS->value, ProductTypes::SNACKS->value),
             'price' => 'nullable|numeric',
             'category_id' => 'nullable|integer|exists:categories,id',
             'photo_path' => 'nullable|string|max:2048',
